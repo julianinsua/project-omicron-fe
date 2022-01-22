@@ -1,0 +1,53 @@
+{
+  "name": "project-omicron-fe",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "i18next": "^21.6.6",
+    "js-cookie": "^3.0.1",
+    "mobx": "^6.3.12",
+    "mobx-react": "^7.2.1",
+    "moment": "^2.29.1",
+    "prettier": "^2.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.3",
+    "react-scripts": "5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/js-cookie": "^3.0.1",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "node-sass": "^6.0.0",
+    "typescript": "^4.1.2",
+    "typescript-plugin-css-modules": "^3.2.0",
+    "web-vitals": "^1.0.1"
+  }
+}

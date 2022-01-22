@@ -1,0 +1,62 @@
+@import "mixins";
+@import "variables";
+
+body {
+  font-family: var(--main-font);
+  margin: 0;
+  background: var(--background-darker-color);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//Cuando el navegador hace autocomplete de los inputs, modifica los styles.
+//Esta fue la unica forma que encontré para cambiarlos
+/*input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-background) inset;
+  -webkit-text-fill-color: var(--text-color);
+}*/
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+ol,
+ul,
+li,
+p {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+:global {
+  .visibleDesktop {
+    @include media-breakpoint-only(xs) {
+      display: none;
+    }
+
+    @include media-breakpoint-only(sm) {
+      display: none;
+    }
+  }
+
+  .visibleMobile {
+    @include media-breakpoint-only(lg) {
+      display: none;
+    }
+
+    @include media-breakpoint-only(md) {
+      display: none;
+    }
+  }
+}
