@@ -60,7 +60,7 @@ class AsyncStore {
     this.errors.push(error)
 
     if (AsyncStore.isServerError(error)) {
-      this.setServerError(error)
+      this.setServerError()
     }
   }
 
