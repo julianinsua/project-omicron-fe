@@ -1,12 +1,18 @@
 import AuthUser, { authUserInterface } from '../Entities/interfaces/AuthUser'
 import Cookies from 'js-cookie'
+import axios from 'axios'
+import AuthServiceBase from '../Entities/interfaces/AuthServiceBase'
 
-class AuthService {
-  getUserFromJson = (authUser: authUserInterface) => AuthUser.fromJson(authUser)
+class AuthService extends AuthServiceBase {
+  getAuthenticationUri = () => '/api/login'
 
-  getUserFromCookie = (authUser: authUserInterface) => AuthUser.fromCookie(authUser)
+  getLogoutUri = () => '/api/logout'
 
-  persistLoginData = (authUser: authUserInterface) => {
+  getAuthUserFromJson = (authUser: authUserInterface) => AuthUser.fromJson(authUser)
+
+  getAuthUserFromCookie = (authUser: authUserInterface) => AuthUser.fromCookie(authUser)
+
+  persistLoginData = (authUser: authUserInterface | AuthUser) => {
     Cookies.set('authUser', JSON.stringify(authUser))
   }
 
@@ -17,10 +23,28 @@ class AuthService {
   }
 
   loadAuthUserFromBrowser = () => {
-    return { id: 'id', email: 'pepito@pepito.com', token: 'aaa.validToken', permissions: ['yes'] }
+    const authUser = JSON.parse(this.getPersistedLoginData() || '{}')
+
+    if (authUser) return this.getAuthUserFromCookie(authUser)
+
+    return null
   }
 
-  logout = () => {}
+  authenticate = (email: string, password: string) => {
+    axios.post(this.getAuthenticationUri(), { email, password }).then(({ data }) => {
+      const authUser = this.getAuthUserFromJson(data)
+      this.persistLoginData(authUser)
+
+      return authUser
+    })
+  }
+
+  logout = () => {
+    axios.get(this.getLogoutUri()).then((response) => response.data)
+
+    this.removePersistedLoginData()
+    return true
+  }
 }
 
 export default AuthService

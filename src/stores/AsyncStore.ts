@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx'
 
 class AsyncStore {
-  protected isLoading = true
+  isLoading = true
   private errors: Array<any> = []
   private serverError = false
   private tryAgainRequest: Function | null = null

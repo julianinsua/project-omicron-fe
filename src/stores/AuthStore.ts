@@ -3,10 +3,10 @@ import moment from 'moment'
 import Timeout = NodeJS.Timeout
 import AsyncStore from './AsyncStore'
 import AuthService from 'services/AuthService'
-import { authUserInterface } from 'Entities/interfaces/AuthUser'
+import AuthUser, { authUserInterface } from 'Entities/interfaces/AuthUser'
 
 class AuthStore extends AsyncStore {
-  private authUser?: authUserInterface
+  authUser?: authUserInterface | AuthUser
   private authService: AuthService
   private logoutTimeout?: Timeout
 
@@ -32,10 +32,10 @@ class AuthStore extends AsyncStore {
   private loadAuthFromBrowser() {
     this.preRequest()
 
-    const authUser: authUserInterface = this.authService.loadAuthUserFromBrowser()
+    const authUser: AuthUser | null = this.authService.loadAuthUserFromBrowser()
 
     if (authUser?.token && this.validToken(authUser.token)) {
-      return this.authenticate(authUser).then(() => {
+      return this.authenticate(authUser.humbleAuthUser).then(() => {
         this.onSuccessRequest()
         this.keepAlive()
       })
@@ -64,14 +64,25 @@ class AuthStore extends AsyncStore {
     return Promise.resolve()
   }
 
-  private logout() {}
-
-  private keepAlive() {
+  logout() {
     this.authService.logout()
+    this.authUser = undefined
   }
+
+  private keepAlive() {}
 
   private updateAuthUser(authUser: authUserInterface) {
     this.authUser = authUser
+  }
+
+  public updateToken(token: string) {
+    if (this.authUser instanceof AuthUser) {
+      this.authUser.updateToken(token)
+    }
+  }
+
+  public get isAuthenticated() {
+    return this.validToken(this.authUser?.token || '')
   }
 
   private setLogoutTimer(token: string) {

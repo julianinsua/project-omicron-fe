@@ -1,16 +1,23 @@
-import LoadingRing from "./presentation/LoadingRing";
-import "styles/base.scss";
-import { useTranslation } from "react-i18next";
-import "util/i18n";
+import LoadingRing from './presentation/LoadingRing'
+import RootStore from './stores/RootStore'
+import AuthStore from './stores/AuthStore'
+import GeneralProvider from './providers/storeContext'
+import 'styles/base.scss'
+import 'util/i18n'
+import axiosInterceptors from './util/axiosInterceptors'
 
-function App() {
-  const { t } = useTranslation("common");
+const rootStore = new RootStore(new AuthStore())
+
+axiosInterceptors(rootStore)
+
+const App = () => {
+  if (rootStore.authStore.isLoading) return <LoadingRing center />
+
   return (
-    <div>
-      <LoadingRing />
-      {t("pepito")}
-    </div>
-  );
+    <GeneralProvider rootStore={rootStore}>
+      <LoadingRing center />
+    </GeneralProvider>
+  )
 }
 
-export default App;
+export default App
