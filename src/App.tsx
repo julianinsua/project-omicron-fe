@@ -1,10 +1,11 @@
-import LoadingRing from './presentation/LoadingRing'
-import RootStore from './stores/RootStore'
-import AuthStore from './stores/AuthStore'
-import GeneralProvider from './providers/storeContext'
+import LoadingRing from 'presentation/LoadingRing'
+import RootStore from 'stores/RootStore'
+import AuthStore from 'stores/AuthStore'
+import GeneralProvider from 'providers/storeContext'
+import Router from 'routing/Router'
+import axiosInterceptors from 'util/axiosInterceptors'
 import 'styles/base.scss'
 import 'util/i18n'
-import axiosInterceptors from './util/axiosInterceptors'
 
 const rootStore = new RootStore(new AuthStore())
 
@@ -15,7 +16,7 @@ const App = () => {
 
   return (
     <GeneralProvider rootStore={rootStore}>
-      <LoadingRing center />
+      <Router />
     </GeneralProvider>
   )
 }

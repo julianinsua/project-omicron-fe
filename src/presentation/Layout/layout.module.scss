@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.wrapper {
+  flex: 1;
+  display: grid;
+  grid-template: $mainLayoutGridTemplate;
+  grid-template-areas: $mainLayoutGridArea;
+  height: 100vh;
+}
+
+.header {
+  width: 100%;
+}
+
+.navbar {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+}

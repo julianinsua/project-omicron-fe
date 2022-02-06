@@ -1,0 +1,40 @@
+@import 'src/styles/baseStyles/buttonBaseStyles';
+
+.secondary {
+  @include secondaryButtonAttributes;
+}
+
+.cancel {
+  @include cancelButtonAttributes;
+}
+
+.outline {
+  @include outlineButtonAttributes;
+}
+
+.loadingCircle {
+  animation: loading-circle 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  display: block;
+  margin-top: -10px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  height: 20px;
+  width: 20px;
+
+  @include loadingSpinnerAttributes;
+}
+
+@keyframes loading-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

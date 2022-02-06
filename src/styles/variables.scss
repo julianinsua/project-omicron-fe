@@ -1,13 +1,64 @@
+/***** MAIN LAYOUT *****/
+/** main layout grid area, here you can define the size and position
+of your header, sidebar and main content */
+$mainLayoutGridArea: 'header header' 'sidebar main';
+/* headerHeight contentHeight / sidebarWidth contentWidth */
+$mainLayoutGridTemplate: 58px 1fr / 216px 1fr;
+/***** MAIN LAYOUT *****/
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
 :root {
+  // Fonts
+  --main-font: 'Roboto', sans-serif;
+
   // Colors
   --primary-color: #0d47a1;
   --primary-color-alt: #2962ff;
   --secondary-color: #e64a19;
   --secondary-color-alt: #ff6e40;
+  --error-color: #c83e3e;
 
   // Loading Ring Variables
   --loading-ring-size: 64px;
   --loading-ring-size-small: 16px;
   --loading-ring-size-spinners: 8px;
   --loading-ring-size-spinners-small: 2px;
+
+  // Button variables
+  --button-default-background: var(--primary-color);
+  --button-default-background-alt: var(--primary-color-alt);
+  --button-secondary-background: var(--secondary-color);
+  --button-secondary-background-alt: var(--secondary-color-alt);
+  --button-cancel-background: #9a9a9a;
+  --button-cancel-background-alt: #8b8b8b;
+  --button-default-color: #ffffff;
+  --button-secondary-color: #ffffff;
+}
+// *** EJEMPLO DE VARIABLES QUE ESPERA ENCONTRAR EL SUBFRAMEWORK ***
+:root {
+  //--input-border: #3f3f3f;
+  //--input-background: #101010;
+  //--text-color: #5b5b5b;
+  //--error-color: #c83e3e;
+  //--main-font: 'Chivo', sans-serif;
+  //--background-color: #f4f4f4;
+  //--primary-color: #005dab;
+  //--primary-color-hover: #003b75;
+  //--secondary-color: #16C465;
+  //--secondary-color-hover: #16803c;
+  //
+  //--button-default-background: var(--primary-color);
+  //--button-default-background-hover: var(--primary-color-hover);
+  //--button-secondary-background: var(--secondary-color);
+  //--button-secondary-background-hover: var(--secondary-color-hover);
+  //--button-cancel-background: #9a9a9a;
+  //--button-cancel-background-hover: #8b8b8b;
+  //--button-default-color: #ffffff;
 }

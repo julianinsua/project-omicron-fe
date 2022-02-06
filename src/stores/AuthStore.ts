@@ -1,6 +1,5 @@
 import { observable, action, computed, makeObservable } from 'mobx'
 import moment from 'moment'
-import Timeout = NodeJS.Timeout
 import AsyncStore from './AsyncStore'
 import AuthService from 'services/AuthService'
 import AuthUser, { authUserInterface } from 'Entities/interfaces/AuthUser'
@@ -8,7 +7,7 @@ import AuthUser, { authUserInterface } from 'Entities/interfaces/AuthUser'
 class AuthStore extends AsyncStore {
   authUser?: authUserInterface | AuthUser
   private authService: AuthService
-  private logoutTimeout?: Timeout
+  private logoutTimeout?: NodeJS.Timeout
 
   constructor(authService = new AuthService()) {
     super()

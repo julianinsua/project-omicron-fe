@@ -1,0 +1,103 @@
+@import 'src/styles/baseStyles/buttonBaseStyles';
+
+.button {
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  outline: none;
+  position: relative;
+  transition: all 200ms ease-out;
+  text-decoration: none;
+  width: fit-content;
+
+  .icon {
+    align-items: center;
+    display: flex !important;
+    color: var(--button-default-color);
+  }
+
+  &.iconLeft {
+    &.icon {
+      order: -1;
+    }
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    transition: all 200ms ease-out, transform 1ms;
+  }
+
+  &:active:not(:disabled) {
+    transition: all 200ms ease-out, transform 1ms;
+  }
+
+  @include defaultButtonAttributes;
+
+  &.secondary {
+    @include secondaryButtonAttributes;
+  }
+
+  &.cancel {
+    @include cancelButtonAttributes;
+  }
+
+  &.outline {
+    @include outlineButtonAttributes;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &.big {
+    @include bigButtonAttributes;
+  }
+
+  &.small {
+    @include smallButtonAttributes;
+  }
+
+  &.smallest {
+    @include smallestButtonAttributes;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+
+  &:disabled {
+    cursor: auto;
+  }
+
+  &.isLoading {
+    transition: all 200ms ease-out, transform 1ms;
+
+    @include isLoadingButtonAttributes;
+  }
+
+  &.circle {
+    padding: 0;
+    min-width: auto;
+    width: $buttonHeightNormal;
+    border-radius: 50%;
+
+    &.big {
+      width: $buttonHeightBig;
+    }
+
+    &.small {
+      width: $buttonHeightSmall;
+    }
+
+    &.smallest {
+      width: $buttonHeightSmallest;
+    }
+  }
+
+  &.error {
+    @include errorButtonAttributes;
+  }
+
+  @include overrideButtonAttributes;
+}
