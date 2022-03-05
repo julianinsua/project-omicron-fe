@@ -1,0 +1,54 @@
+@import 'src/styles/baseStyles/paginatorStyles';
+
+.paginatorContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  @include paginatorContainer;
+}
+
+.tablePagination {
+  align-items: center;
+  display: flex;
+  list-style: none;
+
+  @include paginator;
+}
+
+.page {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transition: all 200ms ease;
+  font-weight: bold;
+  color: var(--secondary-color);
+
+  @include page;
+
+  &:hover:not(.active) {
+    transition: all 200ms ease;
+
+    @include hoverPage;
+  }
+
+  &.active {
+    transition: all 200ms ease;
+
+    @include activePage;
+  }
+}
+
+.nextPageButton {
+  width: auto;
+  margin-left: 14px;
+}
+
+.resultsData {
+  align-items: center;
+  display: flex;
+  margin-left: auto;
+
+  @include resultsData;
+}

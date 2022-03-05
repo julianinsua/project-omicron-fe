@@ -1,0 +1,123 @@
+.label {
+  width: 100%;
+}
+
+:global {
+  .select__container {
+  }
+
+  .select__control {
+    opacity: 1;
+    background-color: var(--input-background);
+    border-color: var(--input-border);
+    border-radius: 3px;
+    box-shadow: none;
+    color: var(--text-color);
+    font-family: var(--main-font);
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 40px;
+    padding: 0 5px 0 15px;
+    width: 100%;
+
+    &:hover {
+      border-color: var(--text-color);
+    }
+
+    &--is-focused {
+    }
+
+    &--menu-is-open {
+      border-color: var(--text-color);
+    }
+
+    &--error {
+      border-color: var(--error-color);
+      color: var(--error-color);
+    }
+
+    &--is-disabled {
+      opacity: 0.3;
+    }
+  }
+
+  .select__value-container {
+    min-height: 38px;
+    font-weight: 500;
+    padding: 0;
+  }
+
+  .select__placeholder {
+    color: var(--secondary-color);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+  }
+
+  .select__menu {
+    background-color: var(--input-background);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.17);
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    z-index: 13;
+  }
+
+  .select__option {
+    font-size: 16px;
+    color: var(--select-text-color);
+    background-color: var(--select-default-option-background);
+
+    &:active {
+      background-color: var(--select-hover-option-background);
+      color: var(--select-hover-option-color);
+    }
+
+    &--is-selected {
+      color: var(--select-selected-option-color);
+      background-color: var(--select-selected-option-background);
+    }
+
+    &--is-focused {
+      background-color: var(--select-default-option-hover-background);
+    }
+  }
+
+  .select__single-value {
+    color: var(--select-text-color);
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .select__multi-value {
+    background: var(--select-multivalue-option-background);
+    border-radius: 50%;
+  }
+
+  .select__multi-value-label {
+    color: var(--select-multivalue-option-color);
+    font-size: 16px;
+    height: 24px;
+    padding: 0 0 0 10px;
+    line-height: 24px;
+  }
+
+  .select__multi-value-remove {
+    color: var(--select-multivalue-option-color);
+  }
+
+  .select__input {
+    color: var(--primary-color);
+    font-size: 16px;
+  }
+
+  .select__indicator-separator {
+    display: none;
+  }
+
+  .select__loading-indicator {
+    &span {
+      background-color: black;
+    }
+  }
+}

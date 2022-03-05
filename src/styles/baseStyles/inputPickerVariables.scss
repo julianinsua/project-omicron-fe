@@ -1,0 +1,13 @@
+@import './inputVariables';
+
+@mixin dateInput {
+  @include input;
+}
+
+@mixin pickerIcon {
+  color: var(--text-color);
+}
+
+@mixin dateInputError {
+  @include inputError;
+}

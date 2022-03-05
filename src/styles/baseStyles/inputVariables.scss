@@ -1,0 +1,39 @@
+@import 'src/styles/mixins';
+
+@mixin input {
+  background: var(--input-background);
+  border-color: var(--input-border);
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: none;
+  border-radius: 3px;
+  color: var(--input-color);
+  font-family: var(--main-font);
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 16px;
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+    font-style: italic;
+  }
+
+  &: focus {
+    color: var(--text-color);
+    border-color: var(--text-color);
+  }
+}
+
+@mixin inputError {
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+@mixin inputErrorMessage {
+  color: var(--error-color);
+  font-size: 14px;
+  margin-left: 16px;
+  margin-top: 5px;
+}

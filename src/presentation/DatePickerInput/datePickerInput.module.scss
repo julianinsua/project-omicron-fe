@@ -1,0 +1,38 @@
+@import 'src/styles/baseStyles/inputPickerVariables';
+
+.datePickerLabel {
+  :global {
+    .react-datepicker-wrapper,
+    .react-datepicker__input-container {
+      width: 100%;
+    }
+  }
+}
+
+.pickerContainer {
+  position: relative;
+  width: 100%;
+}
+
+.dateInput {
+  outline: none;
+  width: 100%;
+
+  @include dateInput;
+}
+
+.pickerIcon {
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 0;
+
+  @include pickerIcon;
+}
+
+.error {
+  @include dateInputError;
+}

@@ -1,7 +1,6 @@
 import React, { FC, ReactElement, useContext } from 'react'
 import c from 'classnames'
 import { StoreContext } from 'providers/storeContext'
-import { ReactComponent } from 'Entities/interfaces/Common'
 import LoadingCircle from 'presentation/LoadingCircle'
 import styles from './button.module.scss'
 
@@ -57,7 +56,7 @@ interface PropTypes {
   hidden?: boolean
   circle?: boolean
   iconPositionLeft?: boolean
-  as?: ReactComponent
+  as?: FC<any>
   className?: string
   disabled?: boolean
   error?: boolean

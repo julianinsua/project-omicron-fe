@@ -1,4 +1,4 @@
-import AuthUser, { authUserInterface } from '../Entities/interfaces/AuthUser'
+import AuthUser, { authUserInterface } from '../Entities/models/AuthUser'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 import AuthServiceBase from '../Entities/interfaces/AuthServiceBase'

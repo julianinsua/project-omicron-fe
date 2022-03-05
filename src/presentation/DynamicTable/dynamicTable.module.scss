@@ -1,0 +1,46 @@
+@import 'src/styles/baseStyles/dynamicTableStyles';
+
+.rowItem {
+  display: grid;
+  justify-items: start;
+  align-items: center;
+
+  @include rowItem;
+}
+
+.item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  padding-right: 16px;
+}
+
+.contentRow {
+  @include headerRow;
+}
+
+.headerRowCell {
+  align-items: center;
+  display: flex;
+
+  @include headerRowCell;
+
+  &.hasSort {
+    cursor: pointer;
+
+    &:hover {
+      .sortIcon {
+        @include sortIconHover;
+      }
+    }
+  }
+}
+
+.sortIcon {
+  @include sortIcon;
+
+  &.sortIconActive {
+    @include sortIconActive;
+  }
+}

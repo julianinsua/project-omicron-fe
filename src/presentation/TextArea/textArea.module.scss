@@ -1,0 +1,25 @@
+@import 'src/styles/baseStyles/textAreaVariables';
+
+.input {
+  outline: none;
+  transition: all 200ms ease;
+  width: 100%;
+
+  @include textarea;
+
+  &.fullHeightArea {
+    flex: 1;
+  }
+
+  &.error {
+    @include textAreaError;
+  }
+}
+
+.fullHeightLabel {
+  @include media-breakpoint-only(xs) {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+  }
+}
