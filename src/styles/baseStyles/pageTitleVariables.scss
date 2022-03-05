@@ -1,0 +1,15 @@
+@import 'src/styles/mixins';
+
+@mixin pageTitleContainer {
+  margin-bottom: 20px;
+}
+
+@mixin sectionTitle {
+  color: var(--text-color);
+  font-size: 30px;
+  font-weight: 600;
+  height: 37px;
+}
+
+@mixin rightSection {
+}

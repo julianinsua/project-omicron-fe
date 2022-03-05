@@ -1,0 +1,41 @@
+@import 'src/styles/baseStyles/imageInputVariables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputContainer {
+  align-items: center;
+  display: flex;
+}
+
+.image {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: all 200ms ease;
+
+  @include imageContainer;
+}
+
+.literalImage {
+  cursor: initial;
+}
+
+.loadingImage {
+  @include loadingImage;
+}
+
+.error {
+  @include error;
+}
+
+.uploadButton {
+  margin-left: 15px;
+}
+
+.round {
+  border-radius: 50%;
+}

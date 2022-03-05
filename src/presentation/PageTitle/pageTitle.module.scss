@@ -1,0 +1,30 @@
+@import 'src/styles/baseStyles/pageTitleVariables';
+
+.pageTitleContainer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  @include pageTitleContainer;
+}
+
+.sectionTitle {
+  font-size: 30px;
+  width: 100%;
+
+  @include sectionTitle;
+}
+
+.rightSection {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: flex-end;
+
+  @include media-breakpoint-only(xs) {
+    flex: 0;
+    max-width: initial;
+  }
+
+  @include rightSection;
+}

@@ -17,6 +17,7 @@ $grid-breakpoints: (
 :root {
   // Fonts
   --main-font: 'Roboto', sans-serif;
+  --text-color: black;
 
   // Colors
   --primary-color: #0d47a1;
@@ -24,6 +25,10 @@ $grid-breakpoints: (
   --secondary-color: #e64a19;
   --secondary-color-alt: #ff6e40;
   --error-color: #c83e3e;
+
+  // Main Backgrounds
+  --background-light: lightgray;
+  --background-table-row: var(--background-light);
 
   // Loading Ring Variables
   --loading-ring-size: 64px;
@@ -40,6 +45,27 @@ $grid-breakpoints: (
   --button-cancel-background-alt: #8b8b8b;
   --button-default-color: #ffffff;
   --button-secondary-color: #ffffff;
+
+  // Label variables
+  --label-color: #fff;
+
+  // Input variables
+  --input-background: #fff;
+  --input-border: #9a9a9a;
+  --input-color: var(--text-color);
+  --input-placeholder-color: gray;
+
+  //Select variables
+  --select-hover-option-background: var(--secondary-color-alt);
+  --select-hover-option-color: white;
+  --select-text-color: var(--text-color);
+  --select-selected-option-background: var(--secondary-color);
+  --select-selected-option-color: white;
+
+  // Paginator variables
+  --paginator-hover-background: lightGray;
+  --paginator-active-background: var(--secondary-color);
+  --paginator-active-color: var(--primary-color);
 }
 // *** EJEMPLO DE VARIABLES QUE ESPERA ENCONTRAR EL SUBFRAMEWORK ***
 :root {

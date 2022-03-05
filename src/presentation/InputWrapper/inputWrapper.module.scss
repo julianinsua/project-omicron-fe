@@ -1,0 +1,38 @@
+@import 'src/styles/variables';
+@import 'src/styles/baseStyles/inputWrapperVariables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include inputWrapper;
+}
+
+.description {
+  @include description;
+}
+
+.error {
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
+  @include inputWrapperError;
+}
+
+.errorLiteral {
+  padding-left: 0;
+}
+
+.align-start {
+  align-self: flex-start;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.align-start {
+  align-self: flex-end;
+}

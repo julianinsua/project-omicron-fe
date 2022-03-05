@@ -2,7 +2,7 @@ import { observable, action, computed, makeObservable } from 'mobx'
 import moment from 'moment'
 import AsyncStore from './AsyncStore'
 import AuthService from 'services/AuthService'
-import AuthUser, { authUserInterface } from 'Entities/interfaces/AuthUser'
+import AuthUser, { authUserInterface } from 'Entities/models/AuthUser'
 
 class AuthStore extends AsyncStore {
   authUser?: authUserInterface | AuthUser

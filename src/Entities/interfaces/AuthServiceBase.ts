@@ -1,4 +1,4 @@
-import AuthUser from './AuthUser'
+import AuthUser from '../models/AuthUser'
 
 abstract class AuthServiceBase {
   abstract loadAuthUserFromBrowser(): AuthUser | null

@@ -32,7 +32,7 @@ class AsyncStore {
     this.tryAgainRequest = request
   }
 
-  private clearError() {
+  public clearError() {
     this.serverError = false
   }
 

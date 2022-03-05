@@ -1,0 +1,20 @@
+@import './inputWrapperVariables';
+
+@mixin imageContainer {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border: 2px solid var(--input-border);
+  border-radius: 3px;
+  cursor: pointer;
+  height: 90px;
+  width: 90px;
+}
+
+@mixin loadingImage {
+  filter: blur(1px) grayscale(100%);
+}
+
+@mixin error {
+  @include inputWrapperError;
+}

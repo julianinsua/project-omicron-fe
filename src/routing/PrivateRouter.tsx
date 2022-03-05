@@ -1,6 +1,7 @@
 import { FC, lazy } from 'react'
 import { Route, Redirect, Switch } from 'react-router'
 import { privateRouteInterface } from './routes'
+import Gated from 'presentation/Gated'
 import Layout from 'presentation/Layout'
 import AuthorizedNavbar from 'presentation/AuthorizedNavbar'
 import AuthorizedHeader from 'presentation/AuthorizedHeader'
@@ -26,7 +27,14 @@ const PrivateRouter: FC<PropTypes> = ({
         <Switch>
           <Route exact path="/" component={MainPageRedirector} />
           {privateRoutes.map((route) => (
-            <Route {...rest} path={route.path} component={route.component} />
+            <Gated.Route
+              {...rest}
+              key={route.path}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+              permission={route.permission}
+            />
           ))}
           <Route component={NotFound} />
         </Switch>
@@ -40,7 +48,7 @@ interface PropTypes {
   isAuthenticated: boolean
   privateRoutes: Array<privateRouteInterface>
   redirectPath: string
-  rest?: any
+  [rest: string]: any
 }
 
 export default PrivateRouter
