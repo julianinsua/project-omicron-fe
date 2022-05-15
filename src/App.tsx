@@ -6,6 +6,7 @@ import Router from 'routing/Router'
 import axiosInterceptors from 'util/axiosInterceptors'
 import 'styles/base.scss'
 import 'util/i18n'
+import { BrowserRouter } from 'react-router-dom'
 
 const rootStore = new RootStore(new AuthStore())
 
@@ -16,7 +17,9 @@ const App = () => {
 
   return (
     <GeneralProvider rootStore={rootStore}>
-      <Router />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </GeneralProvider>
   )
 }

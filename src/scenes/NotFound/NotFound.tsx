@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import styles from './notFound.module.scss'
-import Button from '../../presentation/Button'
-import { DASHBOARD } from '../../routing/paths'
 import { Link } from 'react-router-dom'
+import Button from 'presentation/Button'
+import { DASHBOARD } from 'routing/paths'
+import styles from './notFound.module.scss'
 
-const NotFound: FC<PropTypes> = () => {
+const NotFound: FC = () => {
   const { t } = useTranslation()
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>{t('error404')}</div>
@@ -17,7 +18,5 @@ const NotFound: FC<PropTypes> = () => {
     </div>
   )
 }
-
-interface PropTypes {}
 
 export default NotFound

@@ -1,5 +1,6 @@
 let timerId: ReturnType<typeof window.setTimeout> | undefined
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 const throttle = (func: Function, delay: number) => {
   // if there is a timer initialized delete it
   if (timerId) {

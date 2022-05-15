@@ -11,9 +11,10 @@ export type onChangeEventHandler<T> = (event: React.ChangeEvent<T>) => void
 export type onClickEventHandler<T> = (event: React.MouseEvent<T>) => void
 
 // Localization
-export type TFunction = (key?: string, data?: Object) => string
+export type TFunction = (key?: string, data?: Record<string, unknown>) => string
 
 // Common types. enums and interfaces
+// eslint-disable-next-line no-shadow
 export enum IMAGE_FORMATS {
   png = 'PNG',
   jpg = 'JPG',
@@ -21,10 +22,11 @@ export enum IMAGE_FORMATS {
   gif = 'GIF',
 }
 
+// eslint-disable-next-line no-shadow
 export enum ALIGN_OPTIONS {
-  start = 'start',
-  center = 'center',
-  end = 'end',
+  start = 'align-start',
+  center = 'align-center',
+  end = 'align-end',
 }
 
 export type base64Image = string | Blob | File | ProgressEvent<FileReader>

@@ -1,7 +1,17 @@
 import { FC, ReactNode } from 'react'
 import c from 'classnames'
 import PaginatorStore from 'stores/PaginatorStore'
-const styles = require('./tablePagination.module.scss')
+
+import styles from './tablePagination.module.scss'
+
+interface PropTypes {
+  handlePageChange: (n: number) => void
+  paginator: PaginatorStore
+  maxPagesAtOnce?: number
+  prevIcon?: ReactNode
+  nextIcon?: ReactNode
+  displayResultsMessage?: string
+}
 
 const TablePagination: FC<PropTypes> = ({
   handlePageChange,
@@ -44,7 +54,7 @@ const TablePagination: FC<PropTypes> = ({
             <li
               className={styles.page}
               onClick={() => handlePageChange(currentPage - 1)}
-              role={'menuitem'}
+              role="menuitem"
             >
               {prevIcon}
             </li>
@@ -75,13 +85,11 @@ const TablePagination: FC<PropTypes> = ({
   )
 }
 
-interface PropTypes {
-  handlePageChange: Function
-  paginator: PaginatorStore
-  maxPagesAtOnce?: number
-  prevIcon?: ReactNode
-  nextIcon?: ReactNode
-  displayResultsMessage?: string
+TablePagination.defaultProps = {
+  maxPagesAtOnce: 10,
+  prevIcon: '<',
+  nextIcon: '>',
+  displayResultsMessage: undefined,
 }
 
 export default TablePagination

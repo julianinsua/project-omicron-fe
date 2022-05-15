@@ -1,6 +1,7 @@
-import AuthUser, { authUserInterface } from '../Entities/models/AuthUser'
+// eslint-disable class-methods-use-this
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import AuthUser, { authUserInterface } from '../Entities/models/AuthUser'
 import AuthServiceBase from '../Entities/interfaces/AuthServiceBase'
 
 class AuthService extends AuthServiceBase {

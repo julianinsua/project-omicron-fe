@@ -27,7 +27,8 @@ $grid-breakpoints: (
   --error-color: #c83e3e;
 
   // Main Backgrounds
-  --background-light: lightgray;
+  --background-light: #f5f5f5;
+  --background-darker-color: #e0e0e0;
   --background-table-row: var(--background-light);
 
   // Loading Ring Variables
@@ -45,15 +46,18 @@ $grid-breakpoints: (
   --button-cancel-background-alt: #8b8b8b;
   --button-default-color: #ffffff;
   --button-secondary-color: #ffffff;
+  --button-ripple-color: #63a4ff;
 
   // Label variables
   --label-color: #fff;
 
   // Input variables
-  --input-background: #fff;
+  --input-background: var(--background-light);
   --input-border: #9a9a9a;
   --input-color: var(--text-color);
   --input-placeholder-color: gray;
+  --input-border-hover: var(--primary-color);
+  --input-border-focus: var(--primary-color-alt);
 
   //Select variables
   --select-hover-option-background: var(--secondary-color-alt);

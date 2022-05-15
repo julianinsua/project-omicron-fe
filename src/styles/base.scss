@@ -1,5 +1,5 @@
-@import "mixins";
-@import "variables";
+@import 'mixins';
+@import 'variables';
 
 body {
   font-family: var(--main-font);
@@ -37,6 +37,11 @@ p {
   font-weight: normal;
   margin: 0;
   padding: 0;
+}
+
+input {
+  border: none;
+  outline: none;
 }
 
 :global {

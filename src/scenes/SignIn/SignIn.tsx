@@ -1,15 +1,35 @@
-import { FC } from 'react'
-import FormSelect from 'presentation/FormSelect'
+import { FC, useState, useContext, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Navigate } from 'react-router-dom'
+import { StoreContext } from 'providers/storeContext'
+import { DASHBOARD } from 'routing/paths'
+import Button from 'presentation/Button'
+import InputWrapper from 'presentation/InputWrapper'
+import SignInStore from './SignInStore'
 
-const SignIn: FC<PropTypes> = () => {
-  const optionsArray = [{ id: '12345', label: 'pepito', value: 'pepitoValue' }]
+const SignIn: FC<any> = () => {
+  const { t } = useTranslation('common')
+  const { authStore } = useContext(StoreContext)
+  const [signInStore] = useState(() => new SignInStore())
+
+  const handleChangeUsername = useCallback((e) => {
+    signInStore.setUserName(e.target.value)
+  }, [])
+
+  if (authStore.isAuthenticated) {
+    return <Navigate to={DASHBOARD} />
+  }
+
   return (
     <div>
-      <FormSelect label="pepito" value={null} options={optionsArray} placeholder="pepito" />
+      <InputWrapper
+        inputStore={signInStore.username}
+        onChange={handleChangeUsername}
+        label={t('user')}
+      />
+      <Button label={t('signIn')} material secondary />
     </div>
   )
 }
-
-interface PropTypes {}
 
 export default SignIn

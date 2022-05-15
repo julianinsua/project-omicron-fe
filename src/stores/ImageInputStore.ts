@@ -2,20 +2,39 @@ import { action, makeObservable, observable } from 'mobx'
 import Resizer from 'react-image-file-resizer'
 import { base64Image, IMAGE_FORMATS } from 'Entities/interfaces/Common'
 
+interface ImageErrorInterface {
+  error: boolean
+  message: string
+}
+
+const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+
 class ImageInputStore {
   private id?: string
+
   private image: Blob = new Blob()
+
   public imageBase64?: base64Image
+
   public urlImage?: string
+
   private fileReader?: any // @TODO Check if this makes sense
-  private savedImage: boolean = false
-  public loadingSaveImage: boolean = false
+
+  private savedImage = false
+
+  public loadingSaveImage = false
+
   public imageTypeError: ImageErrorInterface = { error: false, message: '' }
-  private maxWidth: number = 300
-  private maxHeight: number = 300
-  private quality: number = 100
+
+  private maxWidth = 300
+
+  private maxHeight = 300
+
+  private quality = 100
+
   private compressFormat: IMAGE_FORMATS = IMAGE_FORMATS.png
-  private invalidErrorMessage: string = 'InvalidFileType'
+
+  private invalidErrorMessage = 'InvalidFileType'
 
   constructor() {
     makeObservable<ImageInputStore, any>(this, {
@@ -125,12 +144,5 @@ class ImageInputStore {
     return new Blob([ab], { type: 'image/jpeg' })
   }
 }
-
-interface ImageErrorInterface {
-  error: boolean
-  message: string
-}
-
-const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
 export default ImageInputStore

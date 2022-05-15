@@ -1,5 +1,7 @@
 {
   "error404": "Error 404",
   "error404Message": "The page you are trying to access doesn't exist.",
-  "backToMainPage": "Back to main page"
+  "backToMainPage": "Back to main page",
+  "signIn": "Sign In",
+  "user": "User"
 }

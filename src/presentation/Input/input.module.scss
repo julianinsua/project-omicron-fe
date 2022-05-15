@@ -28,3 +28,64 @@
     @include inputError;
   }
 }
+
+.materialWrapper {
+  position: relative;
+  min-width: 200px;
+  min-height: 52px;
+
+  &:hover .materialInput {
+    border-color: var(--input-border-hover);
+  }
+}
+
+.materialInput {
+  @include materialInput;
+
+  &:hover {
+    border-color: var(--input-border-hover);
+  }
+
+  &:focus {
+    border-color: var(--input-border-focus);
+  }
+}
+
+.materialLabel {
+  color: var(--input-placeholder-color);
+  cursor: text;
+  left: 20px;
+  padding: 0 8px;
+  position: absolute;
+  top: 12.8px;
+  transition: top 200ms ease, left 200ms ease, font-size 200ms ease, color 200ms ease;
+}
+
+.materialInput:focus ~ .materialLabel,
+.materialInput:not(:placeholder-shown).materialInput:not(:focus) ~ .materialLabel {
+  background: none;
+  color: var(--input-border-hover);
+  font-size: 12.5px;
+  left: 4px;
+  top: 0;
+}
+
+.outline {
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  background: none;
+  height: 48px;
+}
+
+.outlineLabel {
+  background: var(--background-darker-color);
+}
+
+.outline:focus ~ .outlineLabel,
+.outline:not(:placeholder-shown).outline:not(:focus) ~ .outlineLabel {
+  background: var(--background-darker-color);
+  color: var(--input-border-hover);
+  font-size: 12.5px;
+  left: 4px;
+  top: -8px;
+}

@@ -3,7 +3,15 @@ import { observer } from 'mobx-react'
 import ImageInputStore from 'stores/ImageInputStore'
 import c from 'classnames'
 import Button from '../Button'
-const styles = require('./imageInput.module.scss')
+import styles from './imageInput.module.scss'
+
+interface PropTypes {
+  literal?: boolean
+  inputStore: ImageInputStore
+  uploadButtonText: string
+  placeholder?: ReactNode
+  round?: boolean
+}
 
 const ImageInput: FC<PropTypes> = ({
   literal = false,
@@ -42,55 +50,49 @@ const ImageInput: FC<PropTypes> = ({
     showImage = urlImage
   }
 
-  return (
-    <>
-      {literal ? (
-        <div className={c(styles.image, styles.literalImage, round && styles.round)}>
+  return literal ? (
+    <div className={c(styles.image, styles.literalImage, round && styles.round)}>
+      {!showImage && placeholder}
+    </div>
+  ) : (
+    <div className={styles.wrapper}>
+      <div className={styles.inputContainer}>
+        <div
+          className={c(
+            styles.image,
+            loadingSaveImage && styles.loadingImage,
+            round && styles.round
+          )}
+          onClick={handleButtonClick}
+          style={showImage ? { backgroundImage: `url(${showImage})` } : undefined}
+          role="button"
+          tabIndex={0}
+        >
           {!showImage && placeholder}
         </div>
-      ) : (
-        <div className={styles.wrapper}>
-          <div className={styles.inputContainer}>
-            <div
-              className={c(
-                styles.image,
-                loadingSaveImage && styles.loadingImage,
-                round && styles.round
-              )}
-              onClick={handleButtonClick}
-              style={showImage ? { backgroundImage: `url(${showImage})` } : undefined}
-              role="button"
-              tabIndex={0}
-            >
-              {!showImage && placeholder}
-            </div>
-            <Button
-              label={uploadButtonText}
-              onClick={handleButtonClick}
-              className={styles.uploadButton}
-              smallest
-            />
-            {imageTypeError.error && <div className={styles.error}>{imageTypeError.message}</div>}
-            <input
-              style={{ display: 'none' }}
-              onChange={onChangeFile}
-              accept="image/*"
-              ref={inputRef}
-              type="file"
-            />
-          </div>
-        </div>
-      )}
-    </>
+        <Button
+          label={uploadButtonText}
+          onClick={handleButtonClick}
+          className={styles.uploadButton}
+          smallest
+        />
+        {imageTypeError.error && <div className={styles.error}>{imageTypeError.message}</div>}
+        <input
+          style={{ display: 'none' }}
+          onChange={onChangeFile}
+          accept="image/*"
+          ref={inputRef}
+          type="file"
+        />
+      </div>
+    </div>
   )
 }
 
-interface PropTypes {
-  literal?: boolean
-  inputStore: ImageInputStore
-  uploadButtonText: string
-  placeholder: ReactNode
-  round?: boolean
+ImageInput.defaultProps = {
+  literal: false,
+  round: false,
+  placeholder: null,
 }
 
 export default memo(observer(ImageInput))

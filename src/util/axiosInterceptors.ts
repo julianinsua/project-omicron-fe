@@ -7,6 +7,7 @@ const axiosInterceptors = (rootStore: RootStore) => {
     (response) => response,
     (error) => {
       if (error?.response?.status !== 403 && error?.response.status !== 422) {
+        // eslint-disable-next-line no-param-reassign
         error.response.unknown = true
       }
 
@@ -31,9 +32,11 @@ const axiosInterceptors = (rootStore: RootStore) => {
     (config) => {
       if (config?.headers) {
         if (rootStore.authStore.isAuthenticated) {
+          // eslint-disable-next-line no-param-reassign
           config.headers.Authorization = `Bearer ${rootStore?.authStore?.authUser?.token}`
         }
 
+        // eslint-disable-next-line no-param-reassign
         config.headers['accept-language'] = 'en'
       }
       return config

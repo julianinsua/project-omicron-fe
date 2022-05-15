@@ -1,4 +1,5 @@
 @import 'src/styles/baseStyles/buttonBaseStyles';
+@import 'src/styles/effects';
 
 .button {
   align-items: center;
@@ -6,6 +7,7 @@
   cursor: pointer;
   justify-content: center;
   outline: none;
+  overflow: hidden;
   position: relative;
   transition: all 200ms ease-out;
   text-decoration: none;
@@ -101,3 +103,17 @@
 
   @include overrideButtonAttributes;
 }
+
+.ripple {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: var(--button-ripple-color);
+  display: block;
+  content: ' ';
+  border-radius: 50%;
+  opacity: 1;
+  animation: 0.9s ease 1 forwards ripple-effect;
+}
+
+@include animations;

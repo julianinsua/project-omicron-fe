@@ -1,1 +1,1 @@
-export { default } from "./LoadingRing";
+export { default } from './LoadingRing'

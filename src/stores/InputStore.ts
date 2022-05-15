@@ -1,9 +1,11 @@
-import AsyncStore from './AsyncStore'
 import { action, observable } from 'mobx'
+import AsyncStore from './AsyncStore'
 
 class InputStore extends AsyncStore {
   @observable public error = false
+
   @observable public value?: string = ''
+
   @observable public errorMessage: string | null = ''
 
   @action

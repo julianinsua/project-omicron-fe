@@ -1,32 +1,27 @@
-import { action, makeObservable, observable } from 'mobx'
+import { action, observable } from 'mobx'
 
 class AsyncStore {
-  isLoading = true
-  private errors: Array<any> = []
-  private serverError = false
+  @observable isLoading = true
+
+  @observable private errors: Array<any> = []
+
+  @observable private serverError = false
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private tryAgainRequest: Function | null = null
 
   constructor() {
     this.isLoading = true
-    makeObservable<AsyncStore, any>(this, {
-      // Observables
-      isLoading: observable,
-      errors: observable,
-      serverError: observable,
-      // Actions
-      preRequest: action,
-      onSuccessRequest: action,
-
-      // Computed
-    })
   }
 
-  protected preRequest(request: Function | null = null) {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  @action protected preRequest(request: Function | null = null) {
     this.isLoading = true
     this.errors = []
     this.requestProcess(request)
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   private requestProcess(request: Function | null) {
     this.clearError()
     this.tryAgainRequest = request
@@ -43,6 +38,7 @@ class AsyncStore {
     return null
   }
 
+  @action
   protected onSuccessRequest() {
     this.isLoading = false
   }

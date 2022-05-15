@@ -2,7 +2,13 @@ import { FC } from 'react'
 import c from 'classnames'
 import styles from './loadingCircle.module.scss'
 
-const LoadingCircle: FC<PropTypes> = ({ secondary = false, cancel = false, outline = false }) => {
+interface PropTypes {
+  secondary?: boolean
+  cancel?: boolean
+  outline?: boolean
+}
+
+const LoadingCircle: FC<PropTypes> = ({ secondary, cancel, outline }) => {
   return (
     <div
       className={c(
@@ -15,10 +21,10 @@ const LoadingCircle: FC<PropTypes> = ({ secondary = false, cancel = false, outli
   )
 }
 
-interface PropTypes {
-  secondary?: boolean
-  cancel?: boolean
-  outline?: boolean
+LoadingCircle.defaultProps = {
+  secondary: false,
+  cancel: false,
+  outline: false,
 }
 
 export default LoadingCircle

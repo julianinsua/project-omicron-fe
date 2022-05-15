@@ -20,7 +20,7 @@
     font-style: italic;
   }
 
-  &: focus {
+  &:focus {
     color: var(--text-color);
     border-color: var(--text-color);
   }
@@ -36,4 +36,20 @@
   font-size: 14px;
   margin-left: 16px;
   margin-top: 5px;
+}
+
+@mixin materialInput {
+  background: var(--input-background);
+  border-bottom: 2px solid var(--input-border);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-family: inherit;
+  font-size: inherit;
+  height: 100%;
+  left: 0;
+  outline: none;
+  padding: 20px 20px 10px 20px;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }

@@ -1,0 +1,23 @@
+@import 'src/styles/baseStyles/literalInputVariables';
+
+.literalLabel {
+  cursor: initial;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @include literalLabel;
+}
+
+.literalValue {
+  align-items: center;
+  border: none;
+  cursor: text;
+  display: flex;
+  flex: 1;
+  max-width: 100vw;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+  @include literalValue;
+}

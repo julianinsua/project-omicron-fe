@@ -10,9 +10,13 @@ interface JSONPaginatorInterface {
 
 class PaginatorStore {
   count = 0
+
   total = 0
+
   perPage = 10
+
   currentPage = 1
+
   totalPages = 1
 
   constructor(

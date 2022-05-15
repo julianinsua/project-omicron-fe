@@ -1,5 +1,10 @@
 import { FC, memo, ReactNode } from 'react'
-const styles = require('./pageTitle.module.scss')
+import styles from './pageTitle.module.scss'
+
+interface PropTypes {
+  title: string
+  rightSection?: ReactNode
+}
 
 const PageTitle: FC<PropTypes> = ({ title, rightSection }) => {
   return (
@@ -12,9 +17,8 @@ const PageTitle: FC<PropTypes> = ({ title, rightSection }) => {
   )
 }
 
-interface PropTypes {
-  title: string
-  rightSection?: ReactNode
+PageTitle.defaultProps = {
+  rightSection: undefined,
 }
 
 export default memo(PageTitle)

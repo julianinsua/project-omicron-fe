@@ -1,5 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 
+// eslint-disable-next-line no-shadow
 enum SORT {
   ASC = 'ASC',
   DESC = 'DESC',
@@ -11,7 +12,8 @@ interface SorterInterface {
 }
 
 class SorterStore {
-  public sortField: string = ''
+  public sortField = ''
+
   public sortSense: SORT | '' = SORT.ASC
 
   constructor(sortField: string, sortSense: SORT | '') {
