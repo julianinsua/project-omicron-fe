@@ -1,13 +1,34 @@
-import { FC, memo, ReactNode } from 'react'
+import { FC, memo, ReactNode, MouseEvent } from 'react'
 import c from 'classnames'
-import { DynamicTableColumnInterface } from 'Entities/interfaces/DynamicTableColumnInterface'
+import {
+  DynamicTableColumnInterface,
+  itemInterface,
+} from 'Entities/interfaces/DynamicTableColumnInterface'
 import { TFunction } from 'Entities/interfaces/Common'
 import SorterStore from 'stores/SorterStore'
 import PaginatorStore from 'stores/PaginatorStore'
 import LoadingRing from 'presentation/LoadingRing'
 import TablePagination from 'presentation/TablePagination'
 import DynamicTableHeader from './DynamicTableHeader'
-const styles = require('./dynamicTable.module.scss')
+import styles from './dynamicTable.module.scss'
+
+interface PropTypes {
+  displayResultsMessage: string
+  sortDescendingIcon: ReactNode
+  sortAscendingIcon: ReactNode
+  paginatorPrevIcon: ReactNode
+  paginatorNextIcon: ReactNode
+  handlePageChange: (page: number) => void
+  handleSortChange: (key: string) => void
+  noResultsMessage: ReactNode | string
+  t: TFunction
+  handleRowClick: (e: MouseEvent<HTMLDivElement>, item: itemInterface) => void
+  paginator: PaginatorStore
+  isLoading: boolean
+  columns: Array<DynamicTableColumnInterface>
+  sorter: SorterStore
+  data: Array<itemInterface>
+}
 
 const DynamicTable: FC<PropTypes> = ({
   displayResultsMessage,
@@ -94,29 +115,6 @@ const DynamicTable: FC<PropTypes> = ({
       )}
     </>
   )
-}
-
-interface PropTypes {
-  displayResultsMessage: string
-  sortDescendingIcon: ReactNode
-  sortAscendingIcon: ReactNode
-  paginatorPrevIcon: ReactNode
-  paginatorNextIcon: ReactNode
-  handlePageChange: Function
-  handleSortChange: Function
-  noResultsMessage: ReactNode | string
-  t: TFunction
-  handleRowClick: Function
-  paginator: PaginatorStore
-  isLoading: boolean
-  columns: Array<DynamicTableColumnInterface>
-  sorter: SorterStore
-  data: Array<item>
-}
-
-interface item {
-  id: string
-  [x: string]: any
 }
 
 export default memo(DynamicTable)

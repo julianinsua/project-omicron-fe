@@ -1,10 +1,8 @@
 import { FC } from 'react'
 import styles from './authorizedNavbar.module.scss'
 
-const AuthorizedNavbar: FC<PropTypes> = () => {
+const AuthorizedNavbar: FC<any> = () => {
   return <div className={styles.container}>Navbar</div>
 }
-
-interface PropTypes {}
 
 export default AuthorizedNavbar

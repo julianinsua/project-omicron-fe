@@ -1,6 +1,7 @@
-import AuthUser, { authUserInterface } from '../Entities/models/AuthUser'
+// eslint-disable class-methods-use-this
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import AuthUser, { authUserInterface } from '../Entities/models/AuthUser'
 import AuthServiceBase from '../Entities/interfaces/AuthServiceBase'
 
 class AuthService extends AuthServiceBase {
@@ -40,7 +41,7 @@ class AuthService extends AuthServiceBase {
   }
 
   logout = () => {
-    axios.get(this.getLogoutUri()).then((response) => response.data)
+    // axios.get(this.getLogoutUri()).then((response) => response.data)
 
     this.removePersistedLoginData()
     return true

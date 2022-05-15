@@ -2,7 +2,29 @@ import { FC, memo, Ref } from 'react'
 import Select from 'react-select'
 import LiteralValue from 'presentation/LiteralValue'
 import FormLabel from 'presentation/FormLabel'
-const styles = require('./formSelect.module.scss')
+import styles from './formSelect.module.scss'
+
+interface ValueInterface {
+  value: string
+  label?: string
+  [x: string]: any
+}
+
+interface PropTypes {
+  as?: FC<any>
+  inputRef?: Ref<any>
+  label?: string
+  disabled?: boolean
+  error?: boolean
+  literal?: boolean
+  value?: ValueInterface | Array<ValueInterface> | string | null
+  isMulti?: boolean
+  options?: Array<ValueInterface>
+  [props: string]: any
+}
+
+const isValueInterface = (object: unknown): object is ValueInterface =>
+  Object.prototype.hasOwnProperty.call(object, 'name')
 
 const FormSelect: FC<PropTypes> = ({
   as: Component = Select,
@@ -17,7 +39,7 @@ const FormSelect: FC<PropTypes> = ({
   ...props
 }) => {
   if (literal) {
-    let literalValue: string = ''
+    let literalValue = ''
     if (Array.isArray(value) && isMulti) {
       literalValue = value?.map((e) => e.value).join(', ')
     } else if (isValueInterface(value)) {
@@ -37,6 +59,7 @@ const FormSelect: FC<PropTypes> = ({
         ref={inputRef}
         isDisabled={disabled}
         getOptionLabel={(option: ValueInterface) => {
+          // eslint-disable-next-line no-underscore-dangle
           if (option.__isNew__) {
             return option.value
           }
@@ -55,26 +78,16 @@ const FormSelect: FC<PropTypes> = ({
   )
 }
 
-interface ValueInterface {
-  value: string
-  label?: string
-  [x: string]: any
-}
-
-const isValueInterface = (object: unknown): object is ValueInterface =>
-  Object.prototype.hasOwnProperty.call(object, 'name')
-
-interface PropTypes {
-  as?: FC<any>
-  inputRef?: Ref<any>
-  label?: string
-  disabled?: boolean
-  error?: boolean
-  literal?: boolean
-  value?: ValueInterface | Array<ValueInterface> | string | null
-  isMulti?: boolean
-  options?: Array<ValueInterface>
-  [props: string]: any
+FormSelect.defaultProps = {
+  as: Select,
+  inputRef: undefined,
+  label: '',
+  disabled: false,
+  error: false,
+  literal: false,
+  isMulti: false,
+  options: [],
+  value: null,
 }
 
 export default memo(FormSelect)

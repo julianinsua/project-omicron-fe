@@ -8,16 +8,29 @@ import FormLabel from 'presentation/FormLabel'
 import styles from './datePickerInput.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
 
+interface PropTypes {
+  placeholder?: string
+  onChange?: (date: Date | null) => void
+  literal?: boolean
+  value: Date | string
+  label?: string
+  error?: boolean
+  icon?: ReactComponent
+  dateFormat?: string
+  literalValueFormat?: string
+  [props: string]: any
+}
+
 const DatePickerInput: FC<PropTypes> = ({
-  placeholder = undefined,
-  onChange = () => {},
-  literal = false,
+  placeholder,
+  onChange,
+  literal,
   value,
   label,
-  error = false,
-  icon = null,
-  dateFormat = 'MM/dd/yyyy',
-  literalValueFormat = 'MM/dd/yyyy',
+  error,
+  icon,
+  dateFormat,
+  literalValueFormat,
   ...props
 }) => {
   if (literal) {
@@ -32,39 +45,35 @@ const DatePickerInput: FC<PropTypes> = ({
       onClick={(e: MouseEvent<HTMLLabelElement>) => {
         e.preventDefault()
       }}
-      /* @ts-ignore */
       className={styles.datePickerLabel}
     >
       {label && <FormLabel label={label} disabled={false} />}
-      {/* @ts-ignore */}
       <div className={styles.pickerContainer}>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <DatePicker
-          /* @ts-ignore */
           className={c(styles.dateInput, error && styles.error)}
           selected={moment(value).toDate()}
-          onChange={(date) => onChange(date)}
+          onChange={(date) => onChange && onChange(date)}
           placeholderText={placeholder}
           dateFormat={dateFormat}
           {...props}
         />
-        {/* @ts-ignore */}
         {icon && <span className={styles.pickerIcon}>{icon}</span>}
       </div>
     </label>
   )
 }
 
-interface PropTypes {
-  placeholder?: string
-  onChange?: Function
-  literal?: boolean
-  value: Date | string
-  label?: string
-  error?: boolean
-  icon?: ReactComponent
-  dateFormat?: string
-  literalValueFormat?: string
-  [props: string]: any
+DatePickerInput.defaultProps = {
+  placeholder: undefined,
+  label: '',
+  onChange: () => {},
+  literal: false,
+  error: false,
+  icon: undefined,
+  dateFormat: 'MM/dd/yyyy',
+  literalValueFormat: 'MM/dd/yyyy',
 }
 
 export default memo(DatePickerInput)

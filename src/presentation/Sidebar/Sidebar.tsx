@@ -1,9 +1,7 @@
 import { FC } from 'react'
 
-const Sidebar: FC<PropTypes> = () => {
+const Sidebar: FC = () => {
   return <div>sidebar</div>
 }
-
-interface PropTypes {}
 
 export default Sidebar

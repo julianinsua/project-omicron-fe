@@ -7,8 +7,11 @@ export interface authUserInterface {
 
 class AuthUser {
   public userId: string
+
   public email: string
+
   public readonly permissions: Array<string> = []
+
   public token?: string
 
   constructor(id: string, email: string, token?: string) {

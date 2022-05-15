@@ -1,9 +1,7 @@
 import { FC } from 'react'
 
-const Dashboard: FC<PropTypes> = () => {
+const Dashboard: FC<any> = () => {
   return <div>Dashboard</div>
 }
-
-interface PropTypes {}
 
 export default Dashboard

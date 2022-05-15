@@ -9,11 +9,15 @@ interface JSONPaginatorInterface {
 }
 
 class PaginatorStore {
-  count = 0
-  total = 0
-  perPage = 10
-  currentPage = 1
-  totalPages = 1
+  @observable public count = 0
+
+  @observable public total = 0
+
+  @observable public perPage = 10
+
+  @observable public currentPage = 1
+
+  @observable public totalPages = 1
 
   constructor(
     count: number,
@@ -28,18 +32,10 @@ class PaginatorStore {
     this.currentPage = currentPage
     this.totalPages = totalPages
 
-    makeObservable<PaginatorStore, any>(this, {
-      // observables
-      count: observable,
-      total: observable,
-      perPage: observable,
-      currentPage: observable,
-      totalPages: observable,
-      // actions
-      setCurrentPage: action,
-    })
+    makeObservable(this)
   }
 
+  @action
   public setCurrentPage(currentPage: number) {
     this.currentPage = currentPage
   }

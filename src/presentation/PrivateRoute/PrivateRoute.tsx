@@ -1,5 +1,12 @@
 import { FC } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Navigate, Route } from 'react-router-dom'
+
+interface PropTypes {
+  component: FC<any>
+  isAuthenticated: boolean
+  redirectPath: string
+  [rest: string]: any
+}
 
 const PrivateRoute: FC<PropTypes> = ({
   component: Component,
@@ -8,17 +15,10 @@ const PrivateRoute: FC<PropTypes> = ({
   ...rest
 }) => {
   if (isAuthenticated) {
-    return <Route {...rest} render={(props) => <Component {...props} />} />
+    return <Route {...rest} element={Component} />
   }
 
-  return <Redirect to={{ pathname: redirectPath }} />
-}
-
-interface PropTypes {
-  component: FC<any>
-  isAuthenticated: boolean
-  redirectPath: string
-  [rest: string]: any
+  return <Navigate to={{ pathname: redirectPath }} />
 }
 
 export default PrivateRoute

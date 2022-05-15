@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { Redirect } from 'react-router'
-import { DASHBOARD } from 'routing/paths'
+import { Navigate } from 'react-router-dom'
 
-const MainPageRedirector: FC = () => <Redirect to={DASHBOARD} />
+const MainPageRedirector: FC = () => <Navigate to="/auth/dashboard" />
 
 export default MainPageRedirector

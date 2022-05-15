@@ -2,7 +2,18 @@ import { FC, memo, Ref } from 'react'
 import c from 'classnames'
 import LiteralValue from 'presentation/LiteralValue'
 import FormLabel from 'presentation/FormLabel'
-const styles = require('./textArea.module.scss')
+import styles from './textArea.module.scss'
+
+interface PropTypes {
+  label?: string
+  inputRef?: Ref<any>
+  error?: boolean
+  value?: string
+  literal?: boolean
+  fullHeightLabel?: boolean
+  minRows?: number
+  [props: string]: any
+}
 
 const TextArea: FC<PropTypes> = ({
   label = '',
@@ -12,7 +23,6 @@ const TextArea: FC<PropTypes> = ({
   literal = false,
   fullHeightLabel = false,
   minRows = 4,
-  autosize = true,
   ...props
 }) =>
   literal ? (
@@ -35,16 +45,14 @@ const TextArea: FC<PropTypes> = ({
     </label>
   )
 
-interface PropTypes {
-  label?: string
-  inputRef?: Ref<any>
-  error?: boolean
-  value?: string
-  literal?: boolean
-  fullHeightLabel?: boolean
-  minRows?: number
-  autosize?: boolean
-  [props: string]: any
+TextArea.defaultProps = {
+  label: '',
+  inputRef: undefined,
+  error: false,
+  value: '',
+  literal: false,
+  fullHeightLabel: false,
+  minRows: 4,
 }
 
 export default memo(TextArea)

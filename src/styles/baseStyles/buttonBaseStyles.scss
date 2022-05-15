@@ -6,7 +6,7 @@ $buttonHeightSmall: 36px;
 $buttonHeightSmallest: 30px;
 
 @mixin defaultButtonAttributes {
-  background: var(--button-default-backround);
+  background: var(--button-default-background);
   border: none;
   border-radius: 3px;
   color: var(--button-default-color);

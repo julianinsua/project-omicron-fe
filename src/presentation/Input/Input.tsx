@@ -1,9 +1,9 @@
-import { FC, memo, ChangeEvent, Ref } from 'react'
+import { FC, memo, ChangeEvent, useRef, RefObject, useCallback } from 'react'
 import c from 'classnames'
 import { onChangeEventHandler, validNumber } from 'Entities/interfaces/Common'
 import LiteralValue from 'presentation/LiteralValue'
 import FormLabel from '../FormLabel'
-const styles = require('./input.module.scss')
+import styles from './input.module.scss'
 
 const validateIfNumericChange = (
   e: ChangeEvent<HTMLInputElement>,
@@ -14,6 +14,7 @@ const validateIfNumericChange = (
     return false
   }
 
+  // eslint-disable-next-line no-unsafe-optional-chaining
   if (onlyNumeric && +e?.target?.value > Number.MAX_SAFE_INTEGER - 1) {
     return false
   }
@@ -21,6 +22,21 @@ const validateIfNumericChange = (
   onChange(e)
 
   return null
+}
+
+interface PropTypes {
+  inputRef?: RefObject<any>
+  label?: string
+  value?: string | number
+  onlyNumeric?: boolean
+  className?: string
+  disabled?: boolean
+  onChange?: onChangeEventHandler<HTMLInputElement>
+  error?: boolean | null
+  literal?: boolean
+  material?: boolean
+  outline?: boolean
+  [props: string]: any
 }
 
 const Input: FC<PropTypes> = ({
@@ -33,11 +49,48 @@ const Input: FC<PropTypes> = ({
   literal = false,
   value = '',
   className = '',
+  material,
+  outline = false,
   ...props
-}) =>
-  literal ? (
-    <LiteralValue label={label} value={value} />
-  ) : (
+}) => {
+  const ref = useRef<HTMLInputElement>(null)
+
+  const handleFocusInput = useCallback(() => {
+    if (material) {
+      if (inputRef?.current) {
+        inputRef?.current?.focus()
+      } else {
+        ref?.current?.focus()
+      }
+    }
+  }, [inputRef, ref, material])
+
+  if (literal) {
+    return <LiteralValue label={label} value={value} />
+  }
+
+  if (material) {
+    return (
+      <div className={styles.materialWrapper}>
+        <input
+          className={c(styles.materialInput, outline && styles.outline, className && className)}
+          ref={inputRef || ref}
+          value={value && value}
+          onChange={(e) => validateIfNumericChange(e, onChange, onlyNumeric)}
+          placeholder=" "
+          {...props}
+        />
+        <label
+          className={c(styles.materialLabel, outline && styles.outlineLabel)}
+          onClick={handleFocusInput}
+        >
+          {label}
+        </label>
+      </div>
+    )
+  }
+
+  return (
     <label className={styles.label}>
       {label && <FormLabel label={label} disabled={disabled} />}
       <input
@@ -50,18 +103,20 @@ const Input: FC<PropTypes> = ({
       />
     </label>
   )
+}
 
-interface PropTypes {
-  inputRef?: Ref<any>
-  label?: string
-  value?: string | number
-  onlyNumeric?: boolean
-  className?: string
-  disabled?: boolean
-  onChange?: onChangeEventHandler<HTMLInputElement>
-  error?: boolean | null
-  literal?: boolean
-  [props: string]: any
+Input.defaultProps = {
+  label: '',
+  inputRef: undefined,
+  disabled: false,
+  onChange: () => {},
+  onlyNumeric: false,
+  error: false,
+  literal: false,
+  value: '',
+  className: '',
+  material: false,
+  outline: false,
 }
 
 export default memo(Input)

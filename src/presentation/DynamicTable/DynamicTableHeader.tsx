@@ -2,7 +2,17 @@ import { FC, ReactNode } from 'react'
 import c from 'classnames'
 import { DynamicTableColumnInterface } from 'Entities/interfaces/DynamicTableColumnInterface'
 import SorterStore from 'stores/SorterStore'
-const styles = require('./dynamicTable.module.scss')
+import styles from './dynamicTable.module.scss'
+
+interface PropTypes {
+  columns: Array<DynamicTableColumnInterface>
+  gridStyle: any
+  t: (key?: string, data?: Record<string, unknown>) => string
+  handleSortChange: (key: string) => void
+  sortAscendingIcon: ReactNode
+  sortDescendingIcon: ReactNode
+  sorter: SorterStore
+}
 
 const DynamicTableHeader: FC<PropTypes> = ({
   columns,
@@ -20,8 +30,8 @@ const DynamicTableHeader: FC<PropTypes> = ({
   }
 
   return (
-    <div className={c(styles.rowItem, styles.headerRow)} style={gridStyle}>
-      {columns.map((column, i) => {
+    <div className={c(styles.rowItem, styles.contentRow)} style={gridStyle}>
+      {columns.map((column) => {
         const { title, titleConfig, sortable, key } = column
 
         let value
@@ -37,7 +47,7 @@ const DynamicTableHeader: FC<PropTypes> = ({
             onClick={() => handleClickRowCell(column)}
             role="button"
             tabIndex={0}
-            key={i}
+            key={column.key}
           >
             {value}
             {sortable && (
@@ -52,16 +62,6 @@ const DynamicTableHeader: FC<PropTypes> = ({
       })}
     </div>
   )
-}
-
-interface PropTypes {
-  columns: Array<DynamicTableColumnInterface>
-  gridStyle: any
-  t: (key?: string, data?: Object) => string
-  handleSortChange: Function
-  sortAscendingIcon: ReactNode
-  sortDescendingIcon: ReactNode
-  sorter: SorterStore
 }
 
 export default DynamicTableHeader

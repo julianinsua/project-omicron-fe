@@ -1,12 +1,14 @@
-import { observable, action, computed, makeObservable } from 'mobx'
+import { observable, action, makeObservable } from 'mobx'
 import moment from 'moment'
-import AsyncStore from './AsyncStore'
 import AuthService from 'services/AuthService'
 import AuthUser, { authUserInterface } from 'Entities/models/AuthUser'
+import AsyncStore from './AsyncStore'
 
 class AuthStore extends AsyncStore {
-  authUser?: authUserInterface | AuthUser
+  @observable public authUser?: authUserInterface | AuthUser
+
   private authService: AuthService
+
   private logoutTimeout?: NodeJS.Timeout
 
   constructor(authService = new AuthService()) {
@@ -15,19 +17,10 @@ class AuthStore extends AsyncStore {
     this.isLoading = false
 
     this.loadAuthFromBrowser()
-
-    makeObservable<AuthStore, any>(this, {
-      // Observables
-      authUser: observable,
-      // Actions
-      updateToken: action,
-      updateAuthUser: action,
-      logout: action,
-      // Computed
-      isAuthenticated: computed,
-    })
+    makeObservable(this)
   }
 
+  // eslint-disable-next-line consistent-return
   private loadAuthFromBrowser() {
     this.preRequest()
 
@@ -36,7 +29,7 @@ class AuthStore extends AsyncStore {
     if (authUser?.token && this.validToken(authUser.token)) {
       return this.authenticate(authUser.humbleAuthUser).then(() => {
         this.onSuccessRequest()
-        this.keepAlive()
+        AuthStore.keepAlive()
       })
     }
 
@@ -44,11 +37,11 @@ class AuthStore extends AsyncStore {
     this.onSuccessRequest()
   }
 
-  private validToken(token: string): boolean {
-    return this.getExpirationTime(token) < 0
+  private validToken(token: string | undefined): boolean {
+    return this.getExpirationTime(token) > 0
   }
 
-  private getExpirationTime(token: string): number {
+  private getExpirationTime(token: string | undefined): number {
     if (token) {
       const expDate = this.getJWTExpDate(token)
       return moment.utc(moment(expDate).diff(moment())).valueOf()
@@ -63,17 +56,22 @@ class AuthStore extends AsyncStore {
     return Promise.resolve()
   }
 
+  @action
   logout() {
     this.authService.logout()
     this.authUser = undefined
   }
 
-  private keepAlive() {}
+  private static keepAlive() {
+    console.log('keep alive')
+  }
 
+  @action
   private updateAuthUser(authUser: authUserInterface) {
     this.authUser = authUser
   }
 
+  @action
   public updateToken(token: string) {
     if (this.authUser instanceof AuthUser) {
       this.authUser.updateToken(token)
@@ -81,7 +79,7 @@ class AuthStore extends AsyncStore {
   }
 
   public get isAuthenticated() {
-    return this.validToken(this.authUser?.token || '')
+    return this.validToken(this.authUser?.token)
   }
 
   private setLogoutTimer(token: string) {
@@ -89,7 +87,11 @@ class AuthStore extends AsyncStore {
       clearTimeout(this.logoutTimeout)
     }
 
-    this.logoutTimeout = setTimeout(() => {}, this.getExpirationTime(token))
+    this.logoutTimeout = setTimeout(() => {
+      if (!this.validToken(token)) {
+        this.logout()
+      }
+    }, this.getExpirationTime(token))
   }
 
   get dashboardRoute() {

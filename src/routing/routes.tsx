@@ -1,37 +1,34 @@
-import { ComponentType, lazy } from 'react'
+import { lazy, ReactElement } from 'react'
+import Layout from 'presentation/Layout'
+import { Gated } from 'presentation/Gated/Gated'
 import * as paths from './paths'
+
+const MainPageRedirector = lazy(
+  () => import(/* webpackChunkName: "MainPageRedirectorComponent" */ 'scenes/MainPageRedirector')
+)
 const SignIn = lazy(() => import(/* webpackChunkName: "SignIn" */ 'scenes/SignIn'))
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ 'scenes/Dashboard'))
 
 export interface publicRouteInterface {
   path: string
-  name: string
   redirectPath?: string
-  component: ComponentType<any>
-  exact: boolean
+  element: ReactElement
 }
 
 export interface privateRouteInterface extends publicRouteInterface {
   permission: string
 }
 
-const publicRoutes: Array<publicRouteInterface> = [
+const routeScheme = [
+  { path: paths.LOGIN, element: <SignIn /> },
   {
-    path: paths.LOGIN,
-    name: 'signIn',
-    exact: true,
-    component: SignIn,
+    path: 'auth',
+    element: <Layout />,
+    children: [
+      { index: true, element: <MainPageRedirector /> },
+      { path: paths.DASHBOARD, element: <Gated permission="yes" component={Dashboard} /> },
+    ],
   },
 ]
 
-const privateRoutes: Array<privateRouteInterface> = [
-  {
-    path: paths.DASHBOARD,
-    name: 'dashboard',
-    exact: true,
-    component: Dashboard,
-    permission: 'yes',
-  },
-]
-
-export default { publicRoutes, privateRoutes }
+export default routeScheme

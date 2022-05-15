@@ -1,5 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 
+// eslint-disable-next-line no-shadow
 enum SORT {
   ASC = 'ASC',
   DESC = 'DESC',
@@ -11,30 +12,24 @@ interface SorterInterface {
 }
 
 class SorterStore {
-  public sortField: string = ''
-  public sortSense: SORT | '' = SORT.ASC
+  @observable public sortField = ''
+
+  @observable public sortSense: SORT | '' = SORT.ASC
 
   constructor(sortField: string, sortSense: SORT | '') {
-    makeObservable<SorterStore, any>(this, {
-      // observables
-      sortField: observable,
-      sortSense: observable,
-      // actions
-      setSort: action,
-      changeSortSense: action,
-      // computeds
-      isASC: computed,
-    })
-
     this.sortField = sortField
     this.sortSense = sortSense
+
+    makeObservable(this)
   }
 
+  @action
   public setSort(sortField: string, sortSense: SORT) {
     this.sortField = sortField
     this.sortSense = sortSense
   }
 
+  @action
   public changeSortSense(sortField: string) {
     let sortSense = SORT.ASC
 
@@ -45,6 +40,7 @@ class SorterStore {
     this.setSort(sortField, sortSense)
   }
 
+  @computed
   public get isASC() {
     return this.sortSense === SORT.ASC
   }

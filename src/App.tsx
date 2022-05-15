@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import LoadingRing from 'presentation/LoadingRing'
 import RootStore from 'stores/RootStore'
 import AuthStore from 'stores/AuthStore'
@@ -6,6 +7,7 @@ import Router from 'routing/Router'
 import axiosInterceptors from 'util/axiosInterceptors'
 import 'styles/base.scss'
 import 'util/i18n'
+import { BrowserRouter } from 'react-router-dom'
 
 const rootStore = new RootStore(new AuthStore())
 
@@ -16,7 +18,11 @@ const App = () => {
 
   return (
     <GeneralProvider rootStore={rootStore}>
-      <Router />
+      <BrowserRouter>
+        <Suspense fallback={<LoadingRing center />}>
+          <Router />
+        </Suspense>
+      </BrowserRouter>
     </GeneralProvider>
   )
 }

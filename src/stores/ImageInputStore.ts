@@ -2,41 +2,45 @@ import { action, makeObservable, observable } from 'mobx'
 import Resizer from 'react-image-file-resizer'
 import { base64Image, IMAGE_FORMATS } from 'Entities/interfaces/Common'
 
+interface ImageErrorInterface {
+  error: boolean
+  message: string
+}
+
+const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
+
 class ImageInputStore {
-  private id?: string
-  private image: Blob = new Blob()
-  public imageBase64?: base64Image
-  public urlImage?: string
+  @observable private id?: string
+
+  @observable private image: Blob = new Blob()
+
+  @observable public imageBase64?: base64Image
+
+  @observable public urlImage?: string
+
   private fileReader?: any // @TODO Check if this makes sense
-  private savedImage: boolean = false
-  public loadingSaveImage: boolean = false
-  public imageTypeError: ImageErrorInterface = { error: false, message: '' }
-  private maxWidth: number = 300
-  private maxHeight: number = 300
-  private quality: number = 100
+
+  @observable private savedImage = false
+
+  @observable public loadingSaveImage = false
+
+  @observable public imageTypeError: ImageErrorInterface = { error: false, message: '' }
+
+  private maxWidth = 300
+
+  private maxHeight = 300
+
+  private quality = 100
+
   private compressFormat: IMAGE_FORMATS = IMAGE_FORMATS.png
-  private invalidErrorMessage: string = 'InvalidFileType'
+
+  private invalidErrorMessage = 'InvalidFileType'
 
   constructor() {
-    makeObservable<ImageInputStore, any>(this, {
-      // Observables
-      id: observable,
-      image: observable,
-      imageBase64: observable,
-      urlImage: observable,
-      savedImage: observable,
-      loadingSaveImage: observable,
-      imageTypeError: observable,
-      // Actions
-      setUrlImage: action,
-      handleFileRead: action,
-      setImageTypeError: action,
-      clearImageTypeError: action,
-      selectImage: action,
-      setImage: action,
-    })
+    makeObservable(this)
   }
 
+  @action
   public setUrlImage(value: string) {
     this.urlImage = value
   }
@@ -61,6 +65,7 @@ class ImageInputStore {
     this.invalidErrorMessage = value
   }
 
+  @action
   public handleFileRead() {
     Resizer.imageFileResizer(
       this.image, // file of the new image that can now be uploaded
@@ -76,10 +81,12 @@ class ImageInputStore {
     )
   }
 
+  @action
   public setImageTypeError(message: string) {
     this.imageTypeError = { error: true, message }
   }
 
+  @action
   public clearImageTypeError() {
     this.imageTypeError = { error: false, message: '' }
   }
@@ -93,6 +100,7 @@ class ImageInputStore {
     return true
   }
 
+  @action
   public selectImage(file: File) {
     if (this.validateImage(file)) {
       this.clearImageTypeError()
@@ -106,6 +114,7 @@ class ImageInputStore {
     }
   }
 
+  @action
   setImage(image: Blob) {
     this.image = image
   }
@@ -125,12 +134,5 @@ class ImageInputStore {
     return new Blob([ab], { type: 'image/jpeg' })
   }
 }
-
-interface ImageErrorInterface {
-  error: boolean
-  message: string
-}
-
-const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
 export default ImageInputStore
