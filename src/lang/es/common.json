@@ -3,5 +3,6 @@
   "error404Message": "La página a la que estas tratando de acceder no existe",
   "backToMainPage": "Volver a la página principal",
   "signIn": "Ingresar",
-  "user": "Usuario"
+  "user": "Usuario",
+  "password": "Contraseña"
 }

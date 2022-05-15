@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, makeObservable, observable } from 'mobx'
 
 class AsyncStore {
   @observable isLoading = true
@@ -12,6 +12,7 @@ class AsyncStore {
 
   constructor() {
     this.isLoading = true
+    makeObservable(this)
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types

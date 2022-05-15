@@ -41,7 +41,7 @@ class AuthService extends AuthServiceBase {
   }
 
   logout = () => {
-    axios.get(this.getLogoutUri()).then((response) => response.data)
+    // axios.get(this.getLogoutUri()).then((response) => response.data)
 
     this.removePersistedLoginData()
     return true

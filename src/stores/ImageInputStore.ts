@@ -10,21 +10,21 @@ interface ImageErrorInterface {
 const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
 class ImageInputStore {
-  private id?: string
+  @observable private id?: string
 
-  private image: Blob = new Blob()
+  @observable private image: Blob = new Blob()
 
-  public imageBase64?: base64Image
+  @observable public imageBase64?: base64Image
 
-  public urlImage?: string
+  @observable public urlImage?: string
 
   private fileReader?: any // @TODO Check if this makes sense
 
-  private savedImage = false
+  @observable private savedImage = false
 
-  public loadingSaveImage = false
+  @observable public loadingSaveImage = false
 
-  public imageTypeError: ImageErrorInterface = { error: false, message: '' }
+  @observable public imageTypeError: ImageErrorInterface = { error: false, message: '' }
 
   private maxWidth = 300
 
@@ -37,25 +37,10 @@ class ImageInputStore {
   private invalidErrorMessage = 'InvalidFileType'
 
   constructor() {
-    makeObservable<ImageInputStore, any>(this, {
-      // Observables
-      id: observable,
-      image: observable,
-      imageBase64: observable,
-      urlImage: observable,
-      savedImage: observable,
-      loadingSaveImage: observable,
-      imageTypeError: observable,
-      // Actions
-      setUrlImage: action,
-      handleFileRead: action,
-      setImageTypeError: action,
-      clearImageTypeError: action,
-      selectImage: action,
-      setImage: action,
-    })
+    makeObservable(this)
   }
 
+  @action
   public setUrlImage(value: string) {
     this.urlImage = value
   }
@@ -80,6 +65,7 @@ class ImageInputStore {
     this.invalidErrorMessage = value
   }
 
+  @action
   public handleFileRead() {
     Resizer.imageFileResizer(
       this.image, // file of the new image that can now be uploaded
@@ -95,10 +81,12 @@ class ImageInputStore {
     )
   }
 
+  @action
   public setImageTypeError(message: string) {
     this.imageTypeError = { error: true, message }
   }
 
+  @action
   public clearImageTypeError() {
     this.imageTypeError = { error: false, message: '' }
   }
@@ -112,6 +100,7 @@ class ImageInputStore {
     return true
   }
 
+  @action
   public selectImage(file: File) {
     if (this.validateImage(file)) {
       this.clearImageTypeError()
@@ -125,6 +114,7 @@ class ImageInputStore {
     }
   }
 
+  @action
   setImage(image: Blob) {
     this.image = image
   }

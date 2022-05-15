@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import LoadingRing from 'presentation/LoadingRing'
 import RootStore from 'stores/RootStore'
 import AuthStore from 'stores/AuthStore'
@@ -18,7 +19,9 @@ const App = () => {
   return (
     <GeneralProvider rootStore={rootStore}>
       <BrowserRouter>
-        <Router />
+        <Suspense fallback={<LoadingRing center />}>
+          <Router />
+        </Suspense>
       </BrowserRouter>
     </GeneralProvider>
   )

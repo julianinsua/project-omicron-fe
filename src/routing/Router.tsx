@@ -1,17 +1,9 @@
-import { FC, Suspense } from 'react'
+import { FC } from 'react'
 import { useRoutes } from 'react-router-dom'
-import LoadingRing from 'presentation/LoadingRing'
 import routes from './routes'
 
 const Router: FC = () => {
-  const navigation = useRoutes(routes)
-
-  return (
-    <>
-      <Suspense fallback={<LoadingRing center />} />
-      {navigation}
-    </>
-  )
+  return useRoutes(routes)
 }
 
 export default Router

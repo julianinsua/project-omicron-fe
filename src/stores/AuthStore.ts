@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx'
+import { observable, action, makeObservable } from 'mobx'
 import moment from 'moment'
 import AuthService from 'services/AuthService'
 import AuthUser, { authUserInterface } from 'Entities/models/AuthUser'
@@ -17,6 +17,7 @@ class AuthStore extends AsyncStore {
     this.isLoading = false
 
     this.loadAuthFromBrowser()
+    makeObservable(this)
   }
 
   // eslint-disable-next-line consistent-return
@@ -36,11 +37,11 @@ class AuthStore extends AsyncStore {
     this.onSuccessRequest()
   }
 
-  private validToken(token: string): boolean {
-    return this.getExpirationTime(token) < 0
+  private validToken(token: string | undefined): boolean {
+    return this.getExpirationTime(token) > 0
   }
 
-  private getExpirationTime(token: string): number {
+  private getExpirationTime(token: string | undefined): number {
     if (token) {
       const expDate = this.getJWTExpDate(token)
       return moment.utc(moment(expDate).diff(moment())).valueOf()
@@ -78,7 +79,7 @@ class AuthStore extends AsyncStore {
   }
 
   public get isAuthenticated() {
-    return this.validToken(this.authUser?.token || '')
+    return this.validToken(this.authUser?.token)
   }
 
   private setLogoutTimer(token: string) {

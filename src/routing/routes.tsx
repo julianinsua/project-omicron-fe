@@ -20,14 +20,13 @@ export interface privateRouteInterface extends publicRouteInterface {
 }
 
 const routeScheme = [
-  { path: paths.ROOT, element: <MainPageRedirector /> },
   { path: paths.LOGIN, element: <SignIn /> },
   {
-    path: '/',
+    path: 'auth',
     element: <Layout />,
     children: [
-      { path: '/', element: <Gated permission="yes" component={MainPageRedirector} /> },
-      { path: 'dashboard', element: <Gated permission="yes" component={Dashboard} /> },
+      { index: true, element: <MainPageRedirector /> },
+      { path: paths.DASHBOARD, element: <Gated permission="yes" component={Dashboard} /> },
     ],
   },
 ]
