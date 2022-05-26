@@ -66,7 +66,7 @@ const InputWrapper: FC<PropTypes> = ({
       <Component
         value={inputStore && inputStore.value}
         error={inputStore && inputStore.error}
-        placeholder={usePlaceholder}
+        placeholder={usePlaceholder || ' '}
         inputRef={inputRef}
         literal={literal}
         label={useLabel}

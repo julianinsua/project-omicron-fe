@@ -77,7 +77,6 @@ const Input: FC<PropTypes> = ({
           ref={inputRef || ref}
           value={value && value}
           onChange={(e) => validateIfNumericChange(e, onChange, onlyNumeric)}
-          placeholder=" "
           {...props}
         />
         <label

@@ -1,0 +1,20 @@
+@import 'src/styles/elevation';
+@import 'src/styles/mixins';
+
+.box {
+  align-items: center;
+  background: var(--background-lighter-color);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px 0;
+  width: 620px;
+  max-width: 100%;
+
+  @include dp01;
+
+  @include media-breakpoint-down(xs) {
+    padding: 30px 20px;
+  }
+}

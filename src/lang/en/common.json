@@ -4,5 +4,9 @@
   "backToMainPage": "Back to main page",
   "signIn": "Sign In",
   "user": "User",
-  "password": "Password"
+  "password": "Password",
+  "subtitle": "Give lab documentation back to it's users",
+  "signup": "Sign up",
+  "forgotPassword": "Forgot password?",
+  "intro": "A website by "
 }

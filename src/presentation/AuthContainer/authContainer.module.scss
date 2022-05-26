@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.author {
+  position: absolute;
+  bottom: 5px;
+  opacity: var(--high-emphasis-opacity);
+}
+
+.link {
+  opacity: var(--medium-emphasis-opacity);
+}
