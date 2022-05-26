@@ -1,11 +1,15 @@
 import { FC, useState, useContext, useCallback } from 'react'
 import { observer } from 'mobx-react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import c from 'classnames'
 import { StoreContext } from 'providers/storeContext'
+import { FORGOT_PASSWORD, SIGNUP } from 'routing/paths'
+import AuthContainer from 'presentation/AuthContainer/AuthContainer'
 import Button from 'presentation/Button'
 import InputWrapper from 'presentation/InputWrapper'
 import SignInStore from './SignInStore'
+import styles from './signIn.module.scss'
 
 const SignIn: FC<any> = () => {
   const { t } = useTranslation('common')
@@ -25,21 +29,32 @@ const SignIn: FC<any> = () => {
   }
 
   return (
-    <div>
-      <InputWrapper
-        material
-        inputStore={signInStore.username}
-        onChange={handleChangeUsername}
-        label={t('user')}
-      />
-      <InputWrapper
-        material
-        inputStore={signInStore.password}
-        onChange={handleChangePassword}
-        label={t('password')}
-      />
-      <Button label={t('signIn')} material secondary />
-    </div>
+    <AuthContainer>
+      <form className={styles.inputContainer}>
+        <InputWrapper
+          material
+          inputStore={signInStore.username}
+          onChange={handleChangeUsername}
+          label={t('user')}
+          wrapperClassName={styles.input}
+        />
+        <InputWrapper
+          material
+          inputStore={signInStore.password}
+          onChange={handleChangePassword}
+          label={t('password')}
+          wrapperClassName={styles.input}
+          type="password"
+        />
+      </form>
+      <Button type="submit" label={t('signIn')} material />
+      <Link to={SIGNUP} className={c(styles.link, styles.signupLink)}>
+        {t('signup')}
+      </Link>
+      <Link to={FORGOT_PASSWORD} className={c(styles.link, styles.forgotPasswordLink)}>
+        {t('forgotPassword')}
+      </Link>
+    </AuthContainer>
   )
 }
 

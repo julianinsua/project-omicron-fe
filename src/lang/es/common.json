@@ -4,5 +4,9 @@
   "backToMainPage": "Volver a la página principal",
   "signIn": "Ingresar",
   "user": "Usuario",
-  "password": "Contraseña"
+  "password": "Contraseña",
+  "subtitle": "Devuelvale la documentación  de laboratorio a sus usuarios",
+  "signup": "Registrarse",
+  "forgotPassword": "¿Olvidó su contraseña?",
+  "intro": "Un sitio hecho por "
 }

@@ -15,20 +15,33 @@ $grid-breakpoints: (
 ) !default;
 
 :root {
-  // Fonts
+  // Fonts & text
   --main-font: 'Roboto', sans-serif;
-  --text-color: black;
+  --text-color-light: var(--background-darker-color);
+  --text-color-dark: var(--background-light-color);
+  --high-emphasis-opacity: 0.87;
+  --medium-emphasis-opacity: 0.6;
+  --low-emphasis-opacity: 0.38;
+
+  // Icons
+  --icon-active: var(--high-emphasis-opacity);
+  --icon-inactive: var(--medium-emphasis-opacity);
+  --icon-disabled: var(--low-emphasis-opacity);
 
   // Colors
-  --primary-color: #0d47a1;
-  --primary-color-alt: #2962ff;
-  --secondary-color: #e64a19;
+  --primary-color: #9055a2;
+  --primary-color-alt: #7a488a;
+  --secondary-color: #fc7a57;
   --secondary-color-alt: #ff6e40;
+  --accent-color: #58b493;
+  --accent-color-alt: #dccd70;
   --error-color: #c83e3e;
 
   // Main Backgrounds
-  --background-light: #f5f5f5;
-  --background-darker-color: #e0e0e0;
+  --background-lighter-color: #fafafa;
+  --background-light-color: #eeeeee;
+  --background-dark-color: #011627;
+  --background-darker-color: #010e1a;
   --background-table-row: var(--background-light);
 
   // Loading Ring Variables
@@ -46,13 +59,13 @@ $grid-breakpoints: (
   --button-cancel-background-alt: #8b8b8b;
   --button-default-color: #ffffff;
   --button-secondary-color: #ffffff;
-  --button-ripple-color: #63a4ff;
+  --button-ripple-color: rgba(0, 0, 0, 0.12);
 
   // Label variables
   --label-color: #fff;
 
   // Input variables
-  --input-background: var(--background-light);
+  --input-background: var(--background-light-color);
   --input-border: #9a9a9a;
   --input-color: var(--text-color);
   --input-placeholder-color: gray;

@@ -1,0 +1,23 @@
+.header {
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: var(--medium-emphasis-opacity);
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: 700;
+  opacity: 1;
+}
+
+.big {
+  font-size: 64px;
+}
+
+.small {
+  font-size: 24px;
+}
+
+.smallest {
+  font-size: 16px;
+}
