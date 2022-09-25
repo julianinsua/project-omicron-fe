@@ -73,7 +73,12 @@ const Input: FC<PropTypes> = ({
     return (
       <div className={styles.materialWrapper}>
         <input
-          className={c(styles.materialInput, outline && styles.outline, className && className)}
+          className={c(
+            styles.materialInput,
+            outline && styles.outline,
+            className && className,
+            error && styles.materialError
+          )}
           ref={inputRef || ref}
           value={value && value}
           onChange={(e) => validateIfNumericChange(e, onChange, onlyNumeric)}

@@ -9,9 +9,16 @@
 .author {
   position: absolute;
   bottom: 5px;
+  right: 5px;
   opacity: var(--high-emphasis-opacity);
 }
 
 .link {
   opacity: var(--medium-emphasis-opacity);
+}
+
+.language {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
 }

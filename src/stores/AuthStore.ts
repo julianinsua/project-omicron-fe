@@ -27,7 +27,7 @@ class AuthStore extends AsyncStore {
     const authUser: AuthUser | null = this.authService.loadAuthUserFromBrowser()
 
     if (authUser?.token && this.validToken(authUser.token)) {
-      return this.authenticate(authUser.humbleAuthUser).then(() => {
+      return this.authenticate(authUser).then(() => {
         this.onSuccessRequest()
         AuthStore.keepAlive()
       })
@@ -35,6 +35,13 @@ class AuthStore extends AsyncStore {
 
     this.logout()
     this.onSuccessRequest()
+  }
+
+  public async basicLogin(username: string, password: string) {
+    const authUser = await this.authService.authenticate(username, password)
+    await this.authenticate(authUser)
+
+    return authUser.token
   }
 
   private validToken(token: string | undefined): boolean {
@@ -49,7 +56,7 @@ class AuthStore extends AsyncStore {
     return -1
   }
 
-  private authenticate(authUser: authUserInterface) {
+  private authenticate(authUser: AuthUser) {
     this.updateAuthUser(authUser)
     if (authUser.token) this.setLogoutTimer(authUser.token)
 
@@ -67,7 +74,7 @@ class AuthStore extends AsyncStore {
   }
 
   @action
-  private updateAuthUser(authUser: authUserInterface) {
+  private updateAuthUser(authUser: AuthUser) {
     this.authUser = authUser
   }
 

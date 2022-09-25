@@ -1,11 +1,12 @@
 // eslint-disable class-methods-use-this
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import AuthUser, { authUserInterface } from '../Entities/models/AuthUser'
-import AuthServiceBase from '../Entities/interfaces/AuthServiceBase'
+import AuthUser, { authUserInterface } from 'Entities/models/AuthUser'
+import AuthServiceBase from 'Entities/interfaces/AuthServiceBase'
+import API_URL from 'services/config'
 
 class AuthService extends AuthServiceBase {
-  getAuthenticationUri = () => '/api/login'
+  getAuthenticationUri = () => `${API_URL}/login`
 
   getLogoutUri = () => '/api/logout'
 
@@ -32,8 +33,9 @@ class AuthService extends AuthServiceBase {
   }
 
   authenticate = (email: string, password: string) => {
-    axios.post(this.getAuthenticationUri(), { email, password }).then(({ data }) => {
-      const authUser = this.getAuthUserFromJson(data)
+    return axios.post(this.getAuthenticationUri(), { email, password }).then(({ data }) => {
+      const authUser = this.getAuthUserFromJson(data.data)
+      console.log(authUser)
       this.persistLoginData(authUser)
 
       return authUser

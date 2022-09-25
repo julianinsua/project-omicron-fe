@@ -24,7 +24,7 @@ interface PropTypes {
 
 const InputWrapper: FC<PropTypes> = ({
   wrapperClassName = null,
-  t = null,
+  t = (x) => x,
   as: Component = Input,
   placeholder = null,
   description = null,
@@ -74,7 +74,7 @@ const InputWrapper: FC<PropTypes> = ({
       />
       {inputStore?.error && inputStore?.errorMessage !== '' && (
         <small className={c(styles.error, literal && styles.errorLiteral, styles[errorAlignment])}>
-          {inputStore.errorMessage && t && t(inputStore.errorMessage)}
+          {t(inputStore.errorMessage as string)}
         </small>
       )}
       {description && <span className={styles.description}>{description}</span>}
@@ -86,7 +86,7 @@ InputWrapper.defaultProps = {
   wrapperClassName: null,
   inputStore: undefined,
   label: '',
-  t: undefined,
+  t: (x) => x,
   as: Input,
   placeholder: null,
   description: null,
