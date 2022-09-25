@@ -5,6 +5,7 @@ export type ReactComponent = typeof React.Component | typeof Link
 
 // Regular expresions (RegEx)
 export const validNumber = /^-?\d*[.]?\d{0,2}$/
+export const validEmail = /\S+@\S+\.\S+/
 
 // Event Handlers
 export type onChangeEventHandler<T> = (event: React.ChangeEvent<T>) => void

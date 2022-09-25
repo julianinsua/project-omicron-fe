@@ -49,6 +49,11 @@
   &:focus {
     border-color: var(--input-border-focus);
   }
+
+  &.materialError {
+    border-color: var(--error-color);
+    color: var(--error-color);
+  }
 }
 
 .materialLabel {

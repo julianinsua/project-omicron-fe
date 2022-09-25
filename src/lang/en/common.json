@@ -8,5 +8,9 @@
   "subtitle": "Give lab documentation back to it's users",
   "signup": "Sign up",
   "forgotPassword": "Forgot password?",
-  "intro": "A website by "
+  "intro": "A website by ",
+  "wrongLoginData": "Wrong login data",
+  "language": "Language",
+  "spanish": "Español",
+  "english": "English"
 }

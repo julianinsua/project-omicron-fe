@@ -14,7 +14,7 @@ import styles from './signIn.module.scss'
 const SignIn: FC<any> = () => {
   const { t } = useTranslation('common')
   const { authStore } = useContext(StoreContext)
-  const [signInStore] = useState(() => new SignInStore())
+  const [signInStore] = useState(() => new SignInStore(authStore))
 
   const handleChangeUsername = useCallback((e) => {
     signInStore.setUserName(e.target.value)
@@ -24,14 +24,23 @@ const SignIn: FC<any> = () => {
     signInStore.setPassword(e.target.value)
   }, [])
 
+  const handleSubmitLogin = useCallback(
+    (e) => {
+      e.preventDefault()
+      signInStore.signIn()
+    },
+    [signInStore]
+  )
+
   if (authStore.isAuthenticated) {
     return <Navigate to="/auth/dashboard" />
   }
 
   return (
     <AuthContainer>
-      <form className={styles.inputContainer}>
+      <form className={styles.inputContainer} onSubmit={handleSubmitLogin}>
         <InputWrapper
+          t={t}
           material
           inputStore={signInStore.username}
           onChange={handleChangeUsername}
@@ -39,6 +48,7 @@ const SignIn: FC<any> = () => {
           wrapperClassName={styles.input}
         />
         <InputWrapper
+          t={t}
           material
           inputStore={signInStore.password}
           onChange={handleChangePassword}
@@ -47,7 +57,7 @@ const SignIn: FC<any> = () => {
           type="password"
         />
       </form>
-      <Button type="submit" label={t('signIn')} material />
+      <Button type="submit" label={t('signIn')} material onClick={handleSubmitLogin} />
       <Link to={SIGNUP} className={c(styles.link, styles.signupLink)}>
         {t('signup')}
       </Link>
