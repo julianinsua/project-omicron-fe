@@ -3,14 +3,21 @@
   "error404Message": "The page you are trying to access doesn't exist.",
   "backToMainPage": "Back to main page",
   "signIn": "Sign In",
+  "email": "Email",
   "user": "User",
   "password": "Password",
+  "repeatPassword": "Repeat password",
   "subtitle": "Give lab documentation back to it's users",
+  "login": "Log In",
   "signup": "Sign up",
   "forgotPassword": "Forgot password?",
   "intro": "A website by ",
   "wrongLoginData": "Wrong login data",
   "language": "Language",
   "spanish": "Español",
-  "english": "English"
+  "english": "English",
+  "passwordMismatch": "Passwords must be equal",
+  "invalidEmail": "Invalid Email. Try something like sth@sth.sth",
+  "invalidPassword": "Invalid password. Try 8+ chars, upper and lowercase and numbers",
+  "sendResetEmail": "Reset Password"
 }

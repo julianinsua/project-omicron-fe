@@ -1,3 +1,6 @@
 .container {
-  background: var(--primary-color);
+  background: var(--background-darker-color);
+  color: var(--text-color-dark);
+  height: 100%;
+  padding: 16px 8px;
 }

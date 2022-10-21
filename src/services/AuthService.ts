@@ -27,7 +27,7 @@ class AuthService extends AuthServiceBase {
   loadAuthUserFromBrowser = () => {
     const authUser = JSON.parse(this.getPersistedLoginData() || '{}')
 
-    if (authUser) return this.getAuthUserFromCookie(authUser)
+    if (Object.keys(authUser).length > 0) return this.getAuthUserFromCookie(authUser)
 
     return null
   }
@@ -35,7 +35,6 @@ class AuthService extends AuthServiceBase {
   authenticate = (email: string, password: string) => {
     return axios.post(this.getAuthenticationUri(), { email, password }).then(({ data }) => {
       const authUser = this.getAuthUserFromJson(data.data)
-      console.log(authUser)
       this.persistLoginData(authUser)
 
       return authUser
@@ -47,6 +46,14 @@ class AuthService extends AuthServiceBase {
 
     this.removePersistedLoginData()
     return true
+  }
+
+  signUp = (email: string, password: string, repeatPassword: string) =>
+    axios.post(`${API_URL}/signup`, { email, password, repeatPassword })
+
+  checkPasswordResetToken = (token: string) => {
+    const params = { token }
+    return axios.get(`${API_URL}/resetToken`, { params })
   }
 }
 

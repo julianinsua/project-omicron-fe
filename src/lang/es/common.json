@@ -3,14 +3,21 @@
   "error404Message": "La página a la que estas tratando de acceder no existe",
   "backToMainPage": "Volver a la página principal",
   "signIn": "Ingresar",
+  "email": "Email",
   "user": "Usuario",
   "password": "Contraseña",
+  "repeatPassword": "Repetir contraseña",
   "subtitle": "Devuelvale la documentación  de laboratorio a sus usuarios",
+  "signin": "Ingresar",
   "signup": "Registrarse",
   "forgotPassword": "¿Olvidó su contraseña?",
   "intro": "Un sitio hecho por ",
   "wrongLoginData": "Credenciales incorrectas",
   "language": "Idioma",
   "spanish": "Español",
-  "english": "English"
+  "english": "English",
+  "passwordMismatch": "Las contraseñas deben coincidir",
+  "invalidEmail": "Email invalido. Trate con algo asi: algo@algo.algo",
+  "invalidPassword": "Contraseña invalida. Trate con 8+ caracteres, letras mayusculas y minusculas y numeros",
+  "sendResetEmail": "Resetear de contraseña"
 }

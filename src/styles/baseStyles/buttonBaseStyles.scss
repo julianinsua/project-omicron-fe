@@ -24,7 +24,7 @@ $buttonHeightSmallest: 30px;
 
   /* Hover and focused default atributes */
   &:hover:not(:disabled),
-  &:hover:not(:disabled) {
+  &:focus:not(:disabled) {
     background-color: var(--button-default-background-alt);
   }
 

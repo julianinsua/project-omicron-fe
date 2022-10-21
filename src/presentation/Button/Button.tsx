@@ -2,8 +2,9 @@ import React, { FC, ReactElement, useCallback, useContext, useEffect, useState }
 import c from 'classnames'
 import { StoreContext } from 'providers/storeContext'
 import LoadingCircle from 'presentation/LoadingCircle'
+import { Permissions } from 'Entities/Permissions'
+import { onClickEventHandler } from 'Entities/interfaces/Common'
 import styles from './button.module.scss'
-import { onClickEventHandler } from '../../Entities/interfaces/Common'
 
 interface PropTypes {
   label: string
@@ -24,7 +25,7 @@ interface PropTypes {
   className?: string
   disabled?: boolean
   error?: boolean
-  permission?: string
+  permission?: Permissions
   material?: boolean
   onClick?: onClickEventHandler<HTMLButtonElement>
   [props: string]: any
@@ -143,7 +144,7 @@ Button.defaultProps = {
   className: undefined,
   disabled: false,
   error: false,
-  permission: '',
+  permission: undefined,
   material: false,
   onClick: () => {},
 }

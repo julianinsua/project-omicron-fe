@@ -2,6 +2,7 @@ import { observable, action, makeObservable } from 'mobx'
 import moment from 'moment'
 import AuthService from 'services/AuthService'
 import AuthUser, { authUserInterface } from 'Entities/models/AuthUser'
+import { Permissions } from 'Entities/Permissions'
 import AsyncStore from './AsyncStore'
 
 class AuthStore extends AsyncStore {
@@ -107,8 +108,9 @@ class AuthStore extends AsyncStore {
 
   getJWTExpDate = (token: string) => moment(JSON.parse(atob(token.split('.')[1])).exp * 1000)
 
-  can = (permission: string) =>
-    permission === 'yes' || this.authUser?.permissions?.includes(permission)
+  can = (permission: Permissions) => {
+    return permission === Permissions.YES || this.authUser?.permissions?.includes(permission)
+  }
 }
 
 export default AuthStore

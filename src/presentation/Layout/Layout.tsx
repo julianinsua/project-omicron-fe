@@ -1,8 +1,10 @@
-import { FC } from 'react'
-import { Outlet } from 'react-router-dom'
+import { FC, useContext } from 'react'
+import { Outlet, Navigate } from 'react-router-dom'
 import AuthorizedNavbar from 'presentation/AuthorizedNavbar'
 import AuthorizedHeader from 'presentation/AuthorizedHeader'
 import AuthorizedContentWrapper from 'presentation/AuthorizedContentWrapper'
+import { StoreContext } from 'providers/storeContext'
+import { LOGIN } from 'routing/paths'
 import styles from './layout.module.scss'
 
 interface PropTypes {
@@ -12,6 +14,12 @@ interface PropTypes {
 }
 
 const Layout: FC<PropTypes> = ({ sidebar: Sidebar, header: Header, mainContent: MainContent }) => {
+  const { authStore } = useContext(StoreContext)
+
+  if (!authStore.isAuthenticated) {
+    return <Navigate to={LOGIN} />
+  }
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>{Header && <Header />}</header>

@@ -24,13 +24,9 @@ const SignIn: FC<any> = () => {
     signInStore.setPassword(e.target.value)
   }, [])
 
-  const handleSubmitLogin = useCallback(
-    (e) => {
-      e.preventDefault()
-      signInStore.signIn()
-    },
-    [signInStore]
-  )
+  const handleSubmitLogin = useCallback(() => {
+    signInStore.signIn()
+  }, [signInStore])
 
   if (authStore.isAuthenticated) {
     return <Navigate to="/auth/dashboard" />

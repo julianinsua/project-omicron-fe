@@ -11,12 +11,15 @@
 
 .header {
   width: 100%;
+  grid-area: header;
 }
 
 .navbar {
   width: 100%;
+  grid-area: sidebar;
 }
 
 .main {
   width: 100%;
+  grid-area: main;
 }

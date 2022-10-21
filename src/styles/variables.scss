@@ -23,6 +23,19 @@ $grid-breakpoints: (
   --medium-emphasis-opacity: 0.6;
   --low-emphasis-opacity: 0.38;
 
+  // State Opacity
+  --hover-on-surface-opacity: 0.04;
+  --dragged-on-surface-opacity: 0.08;
+  --focus-on-surface-opacity: 0.12;
+  --select-on-surface-opacity: var(--dragged-on-surface-opacity);
+  --active-on-surface-opacity: var(--focus-on-surface-opacity);
+
+  --hover-on-primary-opacity: var(--dragged-on-surface-opacity);
+  --dragged-on-primary-opacity: 0.16;
+  --focus-on-primary-opacity: 0.24;
+  --select-on-primary-opacity: 0.16;
+  --active-on-primary-opacity: 0.24;
+
   // Icons
   --icon-active: var(--high-emphasis-opacity);
   --icon-inactive: var(--medium-emphasis-opacity);
@@ -36,6 +49,9 @@ $grid-breakpoints: (
   --accent-color: #58b493;
   --accent-color-alt: #dccd70;
   --error-color: #c83e3e;
+
+  // Borders
+  --default-radius: 8px;
 
   // Main Backgrounds
   --background-lighter-color: #fafafa;
@@ -85,23 +101,23 @@ $grid-breakpoints: (
   --paginator-active-color: var(--primary-color);
 }
 // *** EJEMPLO DE VARIABLES QUE ESPERA ENCONTRAR EL SUBFRAMEWORK ***
-:root {
-  //--input-border: #3f3f3f;
-  //--input-background: #101010;
-  //--text-color: #5b5b5b;
-  //--error-color: #c83e3e;
-  //--main-font: 'Chivo', sans-serif;
-  //--background-color: #f4f4f4;
-  //--primary-color: #005dab;
-  //--primary-color-hover: #003b75;
-  //--secondary-color: #16C465;
-  //--secondary-color-hover: #16803c;
-  //
-  //--button-default-background: var(--primary-color);
-  //--button-default-background-hover: var(--primary-color-hover);
-  //--button-secondary-background: var(--secondary-color);
-  //--button-secondary-background-hover: var(--secondary-color-hover);
-  //--button-cancel-background: #9a9a9a;
-  //--button-cancel-background-hover: #8b8b8b;
-  //--button-default-color: #ffffff;
-}
+//:root {
+//--input-border: #3f3f3f;
+//--input-background: #101010;
+//--text-color: #5b5b5b;
+//--error-color: #c83e3e;
+//--main-font: 'Chivo', sans-serif;
+//--background-color: #f4f4f4;
+//--primary-color: #005dab;
+//--primary-color-hover: #003b75;
+//--secondary-color: #16C465;
+//--secondary-color-hover: #16803c;
+//
+//--button-default-background: var(--primary-color);
+//--button-default-background-hover: var(--primary-color-hover);
+//--button-secondary-background: var(--secondary-color);
+//--button-secondary-background-hover: var(--secondary-color-hover);
+//--button-cancel-background: #9a9a9a;
+//--button-cancel-background-hover: #8b8b8b;
+//--button-default-color: #ffffff;
+//}

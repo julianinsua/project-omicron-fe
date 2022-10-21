@@ -1,0 +1,55 @@
+.navBarButton {
+  align-items: center;
+  border-radius: var(--default-radius);
+  color: var(--text-color-dark);
+  display: flex;
+  font-family: var(--main-font);
+  font-size: 14px;
+  font-weight: medium;
+  letter-spacing: 1.25;
+  padding: 8px 16px;
+  position: relative;
+
+  &:hover .overlay {
+    background-color: white;
+    opacity: var(--hover-on-primary-opacity);
+  }
+
+  &:focus .overlay {
+    background-color: white;
+    opacity: var(--focus-on-primary-opacity);
+  }
+}
+
+.navBarButtonActive {
+  color: var(--text-color-dark);
+
+  & .overlay {
+    background-color: white;
+    opacity: var(--active-on-primary-opacity);
+  }
+}
+
+.overlay {
+    border-radius: var(--default-radius);
+  content: ' ';
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.icon {
+  opacity: 1 !important;
+  z-index: 1;
+}
+
+.label {
+  color: var(text-color-dark);
+  opacity: 1;
+  margin-left: 8px;
+  z-index: 1;
+}
