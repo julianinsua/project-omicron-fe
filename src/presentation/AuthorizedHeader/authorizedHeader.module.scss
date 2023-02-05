@@ -1,3 +1,8 @@
 .container {
+  align-items: center;
   background: var(--primary-color-alt);
+  box-shadow: var(--elevation-06dp);
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
 }

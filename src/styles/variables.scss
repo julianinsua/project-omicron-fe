@@ -60,6 +60,28 @@ $grid-breakpoints: (
   --background-darker-color: #010e1a;
   --background-table-row: var(--background-light);
 
+  // Elevation variables
+  --elevation-01dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 1px 3px rgba(0, 0, 0, 0.2);
+  --elevation-02dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 4px 4px rgba(0, 0, 0, 0.25);
+  --elevation-03dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 1px 8px rgba(0, 0, 0, 0.2);
+  --elevation-04dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 2px 4px rgba(0, 0, 0, 0.2);
+  --elevation-06dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 3px 5px rgba(0, 0, 0, 0.2);
+  --elevation-08dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 5px 5px rgba(0, 0, 0, 0.2);
+  --elevation-09dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 5px 6px rgba(0, 0, 0, 0.2);
+  --elevation-12dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 7px 8px rgba(0, 0, 0, 0.2);
+  --elevation-16dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 8px 10px rgba(0, 0, 0, 0.2);
+  --elevation-24dp: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 11px 15px rgba(0, 0, 0, 0.2);
+
   // Loading Ring Variables
   --loading-ring-size: 64px;
   --loading-ring-size-small: 16px;
